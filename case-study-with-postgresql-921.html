@@ -1,0 +1,1107 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An introduction to Entity Framework 5 Code First through examples">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/en-ef5cf-oct-2012/case-study-with-postgresql-921.html">
+      
+      
+        <link rel="prev" href="case-study-with-oracle-database-express-edition-11g-release-2.html">
+      
+      
+        <link rel="next" href="case-study-with-firebird-21.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>6. Case Study with PostgreSQL 9.2.1 - An introduction to Entity Framework 5 Code First through examples</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "An introduction to Entity Framework 5 Code First through examples";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6-case-study-with-postgresql-921" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="An introduction to Entity Framework 5 Code First through examples" class="md-header__button md-logo" aria-label="An introduction to Entity Framework 5 Code First through examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            An introduction to Entity Framework 5 Code First through examples
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6. Case Study with PostgreSQL 9.2.1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer au mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer au mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/stahe/en-ef5cf-oct-2012" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="An introduction to Entity Framework 5 Code First through examples" class="md-nav__button md-logo" aria-label="An introduction to Entity Framework 5 Code First through examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    An introduction to Entity Framework 5 Code First through examples
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/stahe/en-ef5cf-oct-2012" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="the--a-case-study.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. The : A Case Study
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="case-study-with-sql-server-express-2012.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Case Study with SQL Server Express 2012
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="case-study-with-mysql-5528.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Case Study with MySQL 5.5.28
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="case-study-with-oracle-database-express-edition-11g-release-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Case Study with Oracle Database Express Edition 11g Release 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Case Study with PostgreSQL 9.2.1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="case-study-with-postgresql-921.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Case Study with PostgreSQL 9.2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-installing-the-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Installing the tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-creating-the-database-from-the-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Creating the database from the entities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-multi-layer-architecture-based-on-ef-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Multi-layer architecture based on EF 5
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="case-study-with-firebird-21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Case study with Firebird 2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Conclusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p><a id="refheading39815804107930"></a></p>
+<h1 id="6-case-study-with-postgresql-921">6. <span style="color: #365f91">Case Study with PostgreSQL 9.2.1</span></h1>
+<p><a id="refheading39817804107930"></a></p>
+<h2 id="61-installing-the-tools">6.1. <span style="color: #4f81bd">Installing the tools</span></h2>
+<p><span style="color: #000000">The tools to install are as follows:</span></p>
+<ul>
+<li>the DBMS: [http://www.enterprisedb.com/products-services-training/pgdownload#windows];</li>
+<li>an administration tool: EMS SQL Manager for PostgreSQL Freeware [http://www.sqlmanager.net/fr/products/postgresql/manager/download].</li>
+</ul>
+<p><span style="color: #000000">In the following examples, the user </span><strong><span style="color: #000000">postgres </span></strong><span style="color: #000000">has the password </span><strong><span style="color: #000000">postgres</span></strong><span style="color: #000000">.</span></p>
+<p><span style="color: #000000">Let’s start PostgreSQL and then the [SQL Manager Lite for PostgreSQL] tool, which we will use to administer the DBMS.</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000543000001760A1DE264.png" style="display:inline-block; margin:4px;width:17.821cm;height:4.948cm;" class="odt-zoomable" data-zoom-src="images/1000000000000543000001760A1DE264.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [1], we start the PostgreSQL DBMS from Windows Services;</span></li>
+<li><span style="color: #000000">In [2], the service is started;</span></li>
+</ul>
+<p><span style="color: #000000">We now launch the [SQL Manager Lite for MySQL] tool, which we will use to administer the DBMS [3].</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005F9000001C516CF5C64.png" style="display:inline-block; margin:4px;width:17.999cm;height:5.332cm;" class="odt-zoomable" data-zoom-src="images/10000000000005F9000001C516CF5C64.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [4], we create a new database;</span></li>
+<li><span style="color: #000000">In [5], we specify the database name;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005FC0000026B7FF37AAE.png" style="display:inline-block; margin:4px;width:17.999cm;height:7.273cm;" class="odt-zoomable" data-zoom-src="images/10000000000005FC0000026B7FF37AAE.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [5], we log in as postgres / postgres;</span></li>
+<li><span style="color: #000000">In [6], we provide some information;</span></li>
+<li><span style="color: #000000">In [7], we validate the SQL statement to be executed;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000062B000002BE2EE8ECB3.png" style="display:inline-block; margin:4px;width:17.999cm;height:8.003cm;" class="odt-zoomable" data-zoom-src="images/100000000000062B000002BE2EE8ECB3.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [8], the database has been created. It must now be registered in [EMS Manager]. The information is correct. Click [OK];</span></li>
+<li><span style="color: #000000">In [9], connect to it;</span></li>
+<li><span style="color: #000000">In [10], [EMS Manager] displays the database, which is currently empty. Note that the tables will belong to a schema called </span><strong>public</strong> <span style="color: #000000">[11].</span></li>
+</ul>
+<p><span style="color: #000000">We will now connect a VS 2012 project to this database.</span></p>
+<p><a id="refheading39819804107930"></a></p>
+<h2 id="62-creating-the-database-from-the-entities">6.2. <span style="color: #4f81bd">Creating the database from the entities</span></h2>
+<p><span style="color: #000000">We start by duplicating the [RdvMedecins-SqlServer-01] project folder into [RdvMedecins-PostgreSQL-01] [1]:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005D50000031AEFE46C95.png" style="display:inline-block; margin:4px;width:17.999cm;height:9.573cm;" class="odt-zoomable" data-zoom-src="images/10000000000005D50000031AEFE46C95.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [2], in VS 2012, we remove the [RdvMedecins-SqlServer-01] project from the solution;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006100000027462DF8913.png" style="display:inline-block; margin:4px;width:17.999cm;height:7.283cm;" class="odt-zoomable" data-zoom-src="images/10000000000006100000027462DF8913.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [3], the project has been removed;</span></li>
+<li><span style="color: #000000">in [4], we add another one. This one is taken from the [RdvMedecins-PostgreSQL-01] folder that we created earlier;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000032300000118117E153F.png" style="display:inline-block; margin:4px;width:10.624cm;height:3.704cm;" class="odt-zoomable" data-zoom-src="images/100000000000032300000118117E153F.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [5], the loaded project is named [RdvMedecins-SqlServer-01];</span></li>
+<li><span style="color: #000000">in [6], we rename it to [RdvMedecins-PostgreSQL-01];</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000062700000248DC41548B.png" style="display:inline-block; margin:4px;width:17.999cm;height:6.675cm;" class="odt-zoomable" data-zoom-src="images/100000000000062700000248DC41548B.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [7], we add another project to the solution. This one is taken from the [RdvMedecins-SqlServer-01] folder of the project we previously removed from the solution;</span></li>
+<li><span style="color: #000000">in [8], the [RdvMedecins-SqlServer-01] project has been re-added to the solution.</span></li>
+</ul>
+<p><span style="color: #000000">The [RdvMedecins-PostgreSQL-01] project is identical to the [RdvMedecins-SqlServer-01] project. We need to make a few changes. In [App.config], we will modify the connection string and the [DbProviderFactory], which must be adapted to each DBMS.</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span style="color:#0000ff">&lt;!-- </span><span style="color:#008000">database connection string </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">myContext</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">connectionString=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Server=127.0.0.1;Port=5432;Database=rdvmedecins-ef;User Id=postgres;Password=postgres;</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">providerName=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Npgsql</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/connectionStrings</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;!-- </span><span style="color:#008000">the factory provider </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">system.data</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Npgsql Data Provider</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">invariant=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Npgsql</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">support=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">FF</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">description=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">.Net Framework Data Provider for Postgresql Server</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Npgsql.NpgsqlFactory, Npgsql, Version=2.0.11.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/system.data</span><span style="color:#0000ff">&gt;</span></span>
+</code></pre></div>
+
+<ul>
+<li><span style="color: #000000">line 3: the username and password;</span></li>
+<li><span style="color: #000000">Lines 7–9: the </span><em>DbProviderFactory</em><span style="color: #000000">. Line 8 references a DLL [</span><span style="color: #0000ff">Npgsql</span><span style="color: #000000">] that we don’t have. We can get it using NuGet [1]:</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000062C00000277F7E13816.png" style="display:inline-block; margin:4px;width:17.999cm;height:7.188cm;" class="odt-zoomable" data-zoom-src="images/100000000000062C00000277F7E13816.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [2], type the keyword </span><em>postgresql</em><span style="color: #000000"> in the search box;</span></li>
+<li><span style="color: #000000">in [3], select the [Npgsql] package. This is an ADO.NET connector for PostgreSQL;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003EA000002974545F6D0.png" style="display:inline-block; margin:4px;width:13.256cm;height:8.772cm;" class="odt-zoomable" data-zoom-src="images/10000000000003EA000002974545F6D0.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [4], two references have been added;</span></li>
+<li><span style="color: #000000">in [5], in [App.config], you must specify the correct version of the DLL. You can find it in its properties.</span></li>
+</ul>
+<p><span style="color: #000000">In the [Entities.cs] file, you need to adapt the schema of the tables that will be generated:</span></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;MEDECINS&quot;</span>, Schema = <span style="color:#a31515">&quot;public&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;CLIENTS&quot;</span>, Schema = <span style="color:#a31515">&quot;public&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Client </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;SLOTS&quot;</span>, Schema = <span style="color:#a31515">&quot;public&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Creneau</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;RVS&quot;</span>, Schema = <span style="color:#a31515">&quot;public&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Rv</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">We saw earlier when creating a PostgreSQL database that the tables belonged to a schema called </span><strong>public</strong><span style="color: #000000">.</span></p>
+<p><span style="color: #000000">We configure the project&#x27;s execution:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000034600000124152767A9.png" style="display:inline-block; margin:4px;width:11.086cm;height:3.863cm;" class="odt-zoomable" data-zoom-src="images/100000000000034600000124152767A9.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [1], we give a different name to the assembly that will be generated;</span></li>
+<li><span style="color: #000000">in [2], we also specify a different default namespace;</span></li>
+<li><span style="color: #000000">in [3], we specify the program to be executed.</span></li>
+</ul>
+<p><span style="color: #000000">At this stage, there are no compilation errors. Let’s run the [CreateDB_01] program. We get the following exception:</span></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>Unhandled exception: System.Data.MetadataException: The specified schema is invalid. Errors:
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>(11,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>(23,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>(33,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>(43,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>   to System.Data.Metadata.Edm.StoreItemCollection.Loader.ThrowOnNonWarningErrors
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>()
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>   ...
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>   at RdvMedecins_01.CreateDB_01.Main(String[] args) in d:\data\istia-1213\c#\d
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>vp\Entity Framework\RdvMedecins\RdvMedecins-Oracle-01\CreateDB_01.cs:line 15
+</code></pre></div></td></tr></table></div>
+<p><span style="color: #000000">We recall having encountered the same error with MySQL and Oracle. This is related to the type of the </span><em><span style="color: #000000">Timestamp</span></em><span style="color: #000000"> field in the entities. We make the same modification as with Oracle. In the entities, we replace the three lines</span></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Column</span><span style="color:#000000">(</span><span style="color:#a31515">&quot;TIMESTAMP&quot;</span><span style="color:#000000">)]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Timestamp</span><span style="color:#000000">]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public byte</span><span style="color:#000000">[] Timestamp { </span><span style="color:#0000ff">get</span><span style="color:#000000">; </span><span style="color:#0000ff">set</span><span style="color:#000000">; }</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000"> with the following:</span></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">ConcurrencyCheck</span><span style="color:#000000">]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Column</span><span style="color:#000000">(</span><span style="color:#a31515">&quot;VERSIONING&quot;</span><span style="color:#000000">)]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public </span><span style="color:#2b91af">int</span><span style="color:#000000">? Versioning { </span><span style="color:#0000ff">get</span><span style="color:#000000">; </span><span style="color:#0000ff">set</span><span style="color:#000000">; }</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">We change the column type from </span><strong><span style="color: #000000">byte[] </span></strong><span style="color: #000000">to </span><strong><span style="color: #000000">int?</span></strong><span style="color: #000000">. In the DBMS, we will use stored procedures to increment this integer by one each time a row is inserted or modified.</span></p>
+<p><span style="color: #000000">We make the above change to all four entities and then rerun the application. We then get the following error:</span></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nx">Unhandled</span><span class="w"> </span><span class="nx">exception</span><span class="o">:</span><span class="w"> </span><span class="nx">System</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">DataException</span><span class="o">:</span><span class="w"> </span><span class="nx">An</span><span class="w"> </span><span class="nx">exception</span><span class="w"> </span><span class="nx">occurred</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nx">initializing</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">database</span><span class="p">.</span><span class="w"> </span><span class="nx">See</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">InnerException</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">details</span><span class="p">.</span><span class="w"> </span><span class="o">---&gt;</span><span class="w"> </span><span class="nx">System</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">ProviderIncompatibleException</span><span class="o">:</span><span class="w"> </span><span class="nx">DeleteDatabase</span><span class="w"> </span><span class="nx">is</span><span class="w"> </span><span class="nx">not</span><span class="w"> </span><span class="nx">supported</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">provider</span><span class="p">.</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">   </span><span class="nx">at</span><span class="w"> </span><span class="nx">System</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">Common</span><span class="p">.</span><span class="nx">DbProviderServices</span><span class="p">.</span><span class="nx">DbDeleteDatabase</span><span class="p">(</span><span class="nx">DbConnection</span><span class="w"> </span><span class="nx">connection</span><span class="p">,</span><span class="w"> </span><span class="nx">Nullable</span><span class="sb">`1 commandTimeout, StoreItemCollection storeItemCollection)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="sb">   ...</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="sb">   to System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase()</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="sb">   at RdvMedecins_01.CreateDB_01.Main(String[] args) in d:\data\istia-1213\c#\d</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="sb">vp\Entity Framework\RdvMedecins\RdvMedecins-Oracle-01\CreateDB_01.cs:line 15</span>
+</code></pre></div></td></tr></table></div>
+<p><span style="color: #000000">Line 1 indicates that the PostgreSQL ADO.NET connector is unable to delete the existing database. Just like with Oracle. We are therefore required to build the [RDVMEDECINS-EF] database manually using the [EMS Manager for PostgreSQL] tool. We will not describe every step, but only the most important ones.</span></p>
+<p><span style="color: #000000">The PostgreSQL database will be as follows:</span></p>
+<p><u><strong><span style="color: #000000">The tables</span></strong></u></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000055300000194A4F22C8F.png" style="display:inline-block; margin:4px;width:18.03cm;height:5.345cm;" class="odt-zoomable" data-zoom-src="images/100000000000055300000194A4F22C8F.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [1], ID is a primary key of type </span><em>serial</em><span style="color: #000000">. This PostgreSQL type is an integer automatically generated by the DBMS.</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000051B00000187C8CE44E3.png" style="display:inline-block; margin:4px;width:17.291cm;height:5.173cm;" class="odt-zoomable" data-zoom-src="images/100000000000051B00000187C8CE44E3.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000052A00000187AADB34D7.png" style="display:inline-block; margin:4px;width:17.489cm;height:5.173cm;" class="odt-zoomable" data-zoom-src="images/100000000000052A00000187AADB34D7.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000512000001AA9CF42D51.png" style="display:inline-block; margin:4px;width:17.171cm;height:5.636cm;" class="odt-zoomable" data-zoom-src="images/1000000000000512000001AA9CF42D51.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004B1000001508A641D14.png" style="display:inline-block; margin:4px;width:15.889cm;height:4.445cm;" class="odt-zoomable" data-zoom-src="images/10000000000004B1000001508A641D14.png" /></td></tr></table>
+
+<p><span style="color: #000000">The various tables have the primary and foreign keys that these same tables had in the previous examples. The foreign keys have the ON DELETE CASCADE attribute.</span></p>
+<p><u><strong><span style="color: #000000">Sequences</span></strong></u></p>
+<p><span style="color: #000000">As with Oracle, we have created sequences here. These are generators of consecutive numbers. There are 5 of them [1].</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005130000015F9201D879.png" style="display:inline-block; margin:4px;width:17.186cm;height:4.644cm;" class="odt-zoomable" data-zoom-src="images/10000000000005130000015F9201D879.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [2], we see the properties of the [CLIENTS_ID_SEQ] sequence. It generates consecutive numbers in increments of 1, starting from 1 up to a very large value.</span></li>
+</ul>
+<p><span style="color: #000000">All sequences are built on the same model. </span></p>
+<ul>
+<li><span style="color: #000000">[CLIENTS_ID_seq] will be used to generate the primary key for the [CLIENTS] table;</span></li>
+<li><span style="color: #000000">[MEDECINS_ID_seq] will be used to generate the primary key for the [MEDECINS] table;</span></li>
+<li><span style="color: #000000">[SLOTS_ID_seq] will be used to generate the primary key for the [SLOTS] table;</span></li>
+<li><span style="color: #000000">[RVS_ID_seq] will be used to generate the primary key for the [RVS] table;</span></li>
+<li><span style="color: #000000">[sequence_versions] will be used to generate the values for the [VERSIONING] columns in all tables.</span></li>
+</ul>
+<p><u><strong><span style="color: #000000">Triggers</span></strong></u></p>
+<p><span style="color: #000000">A trigger is a procedure executed by the DBMS before or after an event (Insert, Update, Delete) in a table. We have 4 of them [1]:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004D1000000BEF0605232.png" style="display:inline-block; margin:4px;width:16.312cm;height:2.514cm;" class="odt-zoomable" data-zoom-src="images/10000000000004D1000000BEF0605232.png" /></td></tr></table>
+
+<p><span style="color: #000000">Let’s look at the DDL code for the [CLIENTS_tr] trigger, which populates the [VERSIONING] column of the [CLIENTS] table:</span></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="ss">&quot;CLIENTS_tr&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="k">BEFORE</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="ss">&quot;CLIENTS&quot;</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="k">EXECUTE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">trigger_versions</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><span style="color: #000000">lines 1-3: before each INSERT or UPDATE operation on the [CLIENTS] table;</span></li>
+<li><span style="color: #000000">Line 4: The procedure [public.trigger_versions()] is executed.</span></li>
+</ul>
+<p><span style="color: #000000">The procedure [public.trigger_versions()] is as follows:</span></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>BEGIN
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>NEW.&quot;VERSIONING&quot;:=nextval(&#39;sequence_versions&#39;);
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>return NEW;
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>END
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><span style="color: #000000">Line 2: NEW represents the row that is about to be inserted or modified. NEW. &quot;VERSIONING&quot; is the [VERSIONING] column of that row. It is assigned the next value from the &quot;sequence_versions&quot; number generator. Thus, the [&quot;VERSIONING&quot;] column changes with every INSERT or UPDATE performed on the [CLIENTS] table.</span></li>
+</ul>
+<p><span style="color: #000000">The triggers [MEDECINS_tr, CRENEAUX_tr, RVS_tr] work in the same way. The four [&quot;VERSIONING&quot;] columns derive their values from the same sequence.</span></p>
+<p><span style="color: #000000">The script for generating the tables in the PostgreSQL database [RDVMEDECINS-EF] has been placed in the folder [RdvMedecins / databases / postgreSQL]. The reader can load and run it to create the tables.</span></p>
+<p><span style="color: #000000">Once this is done, the various programs in the project can be run. They produce the same results as with SQL Server, except for the [ModifyDetachedEntities] program, which crashes for the same reason it crashed with Oracle. The problem is resolved in the same way. Simply copy the [ModifyDetachedEntities] program from the [RdvMedecins-Oracle-01] project into the [RdvMedecins-PostgreSQL-01] project.</span></p>
+<p><span style="color: #000000">The [LazyEagerLoading] program crashes with the following exception:</span></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">Unhandled</span> <span class="n">exception</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">EntityCommandExecutionException</span><span class="p">:</span> <span class="n">An</span> <span class="n">error</span> <span class="n">occurred</span> <span class="k">while</span> <span class="n">executing</span> <span class="n">the</span> <span class="n">command</span> <span class="n">definition</span><span class="o">.</span> <span class="n">For</span> <span class="n">more</span> <span class="n">details</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">inner</span> <span class="n">exception</span><span class="o">.</span> <span class="o">---&gt;</span> <span class="n">Npgsql</span><span class="o">.</span><span class="n">NpgsqlException</span><span class="p">:</span> <span class="n">ERROR</span><span class="p">:</span> <span class="mi">42601</span><span class="p">:</span> <span class="n">syntax</span> <span class="n">error</span> <span class="n">at</span> <span class="ow">or</span> <span class="n">near</span> <span class="s2">&quot;LEFT&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>   <span class="n">at</span> <span class="n">Npgsql</span><span class="o">.</span><span class="n">NpgsqlState</span><span class="o">.&lt;</span><span class="n">ProcessBackendResponses_Ver_3</span><span class="o">&gt;</span><span class="n">d__a</span><span class="o">.</span><span class="n">MoveNext</span><span class="p">()</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>   <span class="o">...</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>   <span class="n">at</span> <span class="n">RdvMedecins_01</span><span class="o">.</span><span class="n">LazyEagerLoading</span><span class="o">.</span><span class="n">Main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>\<span class="n">data</span>\<span class="n">istia</span><span class="o">-</span><span class="mi">1213</span>\<span class="n">c</span><span class="c1">#\dvp\Entity Framework\RdvMedecins\RdvMedecins-PostgreSQL-01\LazyEagerLoading.cs:line 23</span>
+</code></pre></div></td></tr></table></div>
+<p><span style="color: #000000">The incorrect code is as follows:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">      <span style="color:#0000ff">using </span>(<span style="color:#0000ff">var </span>context = <span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span>())</span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// slot #0</span></span>
+<span class="odt-code-line"><span style="color:#000000">        slot = context.Slots.Include(</span><span style="color:#a31515">&quot;Doctor&quot;</span><span style="color:#000000">).Single&lt;</span><span style="color:#2b91af">Slot</span><span style="color:#000000">&gt;(c =&gt; c.Id == slotId);</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#2b91af">Console</span><span style="color:#000000">.WriteLine(slot.ShortIdentity());</span></span>
+<span class="odt-code-line"><span style="color:#000000">}</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">Line 1 of the exception: the reported error suggests a join because LEFT is a join keyword. Since line 4 of the code above requests the immediate loading of the [Doctor] dependency for an [Appointment] entity, EF performed a join between the [APPOINTMENTS] and [DOCTORS] tables. However, it appears that the ADO.NET connector generated an incorrect SQL statement. We rewrite the code as follows:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">      <span style="color:#0000ff">using </span>(<span style="color:#0000ff">var </span>context = <span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span>())</span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// slot #0</span></span>
+<span class="odt-code-line"><span style="color:#000000">        slot = context.Slots.Find(slotId);</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#2b91af">Console</span><span style="color:#000000">.WriteLine(slot.ShortIdentity());</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we force the loading of the associated doctor</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// this is possible because we are still in an open context</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">doctor = slot.Doctor;</span></span>
+<span class="odt-code-line"><span style="color:#000000">}</span></span>
+</code></pre></div>
+
+<ul>
+<li><span style="color: #000000">line 4: we retrieve the slot without a join;</span></li>
+<li><span style="color: #000000">line 8: we retrieve the missing dependency.</span></li>
+</ul>
+<p><span style="color: #000000">It works. Once again, we see that changing the DBMS has an impact on the code. In fact, it’s not the DBMS that’s the issue here, but its ADO.NET connector.</span></p>
+<p><a id="refheading39821804107930"></a></p>
+<h2 id="63-multi-layer-architecture-based-on-ef-5">6.3. <span style="color: #4f81bd">Multi-layer architecture based on EF 5</span></h2>
+<p><span style="color: #000000">We return to our case study described in paragraph</span><a href="#etude-de-cas"><u><span style="color: #0563c1"> 2</span></u></a><span style="color: #000000">.</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005ED0000012F13EEA291.png" style="display:inline-block; margin:4px;width:17.999cm;height:3.595cm;" class="odt-zoomable" data-zoom-src="images/10000000000005ED0000012F13EEA291.png" /></td></tr></table>
+
+<p><span style="color: #000000">We will start by building the [DAO] data access layer. To do this, we duplicate the VS 2012 console project [RdvMedecins-SqlServer-02] into [RdvMedecins-PostgreSQL-02] [1]:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005C00000030CC9D6021E.png" style="display:inline-block; margin:4px;width:17.999cm;height:9.537cm;" class="odt-zoomable" data-zoom-src="images/10000000000005C00000030CC9D6021E.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [2], delete the project [RdvMedecins-SqlServer-02];</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005DC00000213C38C1F3F.png" style="display:inline-block; margin:4px;width:17.999cm;height:6.371cm;" class="odt-zoomable" data-zoom-src="images/10000000000005DC00000213C38C1F3F.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [3], add an existing project to the solution. Take it from the [RdvMedecins-PostgreSQL-02] folder that was just created;</span></li>
+<li><span style="color: #000000">In [4], the new project has the same name as the one that was deleted. We will change its name;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005730000015F1925C733.png" style="display:inline-block; margin:4px;width:17.999cm;height:4.53cm;" class="odt-zoomable" data-zoom-src="images/10000000000005730000015F1925C733.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [5], we have changed the project name;</span></li>
+<li><span style="color: #000000">In [6], we modify some of its properties, such as the assembly name here;</span></li>
+<li><span style="color: #000000">in [7], the [Models] folder is deleted and replaced by the [Models] folder from the [RdvMedecins-PostgreSQL-01] project. This is because both projects share the same models.</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000030F000001509FAFD9EE.png" style="display:inline-block; margin:4px;width:10.359cm;height:4.445cm;" class="odt-zoomable" data-zoom-src="images/100000000000030F000001509FAFD9EE.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [8], the project&#x27;s current references;</span></li>
+<li><span style="color: #000000">in [9], the PostgreSQL ADO.NET connector has been added using the NuGet tool.</span></li>
+</ul>
+<p><span style="color: #000000">In the [App.config] file, replace the SQL Server database information with that of the PostgreSQL database. This information can be found in the [App.config] file of the [RdvMedecins-PostgreSQL-01] project:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;!-- </span><span style="color:#008000">database connection string </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">myContext</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">connectionString=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Server=127.0.0.1;Port=5432;Database=rdvmedecins-ef;User Id=postgres;Password=postgres;</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">providerName=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Npgsql</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/connectionStrings</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;!-- </span><span style="color:#008000">the provider factory </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">system.data</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Npgsql Data Provider</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">invariant=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Npgsql</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">support=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">FF</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">description=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">.Net Framework Data Provider for Postgresql Server</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Npgsql.NpgsqlFactory, Npgsql, Version=2.0.11.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">/system.data</span><span style="color:#0000ff">&gt;</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">The objects managed by Spring also change. Currently we have:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;!-- </span><span style="color:#008000">Spring configuration </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">spring</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">context</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">resource </span><span style="color:#0000ff">uri=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">config://spring/objects</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/context</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">objects </span><span style="color:#0000ff">xmlns=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">http://www.springframework.net</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">object </span><span style="color:#0000ff">id=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">rdvmedecinsDao</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">RdvMedecins.Dao.Dao,RdvMedecins-SqlServer-02</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/objects</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">/spring</span><span style="color:#0000ff">&gt;</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">Line 7 references the assembly for the [</span><span style="color: #0000ff">RdvMedecins-SqlServer-02</span><span style="color: #000000">] project. The assembly is now [</span><span style="color: #0000ff">RdvMedecins-PostgreSQL-02</span><span style="color: #000000">].</span></p>
+<p><span style="color: #000000">With that done, we are ready to run the [DAO] layer test. First, we must ensure the database is populated (using the [Fill] program from the [</span><span style="color: #0000ff">RdvMedecins-PostgreSQL-01</span><span style="color: #000000">] project). The test program crashes with the following exception:</span></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="mi">2012</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="mi">12</span> <span class="mi">13</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">188</span> <span class="p">[</span><span class="n">INFO</span><span class="p">]</span>  <span class="n">Spring</span><span class="o">.</span><span class="n">Context</span><span class="o">.</span><span class="n">Support</span><span class="o">.</span><span class="n">XmlApplicationContext</span> <span class="o">-</span> <span class="n">A</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">pplicationContext</span> <span class="n">Refresh</span><span class="p">:</span> <span class="n">Completed</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">List</span> <span class="n">of</span> <span class="n">clients</span><span class="p">:</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="n">Client</span> <span class="p">[</span><span class="mi">47</span><span class="p">,</span><span class="n">Mr</span><span class="p">,</span><span class="n">Jules</span><span class="p">,</span><span class="n">Martin</span><span class="p">,</span><span class="mi">468</span><span class="p">]</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">Client</span> <span class="p">[</span><span class="mi">48</span><span class="p">,</span><span class="n">Ms</span><span class="o">.</span><span class="p">,</span><span class="n">Christine</span><span class="p">,</span><span class="n">German</span><span class="p">,</span><span class="mi">469</span><span class="p">]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">Customer</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span><span class="n">Mr</span><span class="o">.</span><span class="p">,</span><span class="n">Jules</span><span class="p">,</span><span class="n">Jacquard</span><span class="p">,</span><span class="mi">470</span><span class="p">]</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">Client</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="n">Ms</span><span class="o">.</span><span class="p">,</span><span class="n">Brigitte</span><span class="p">,</span><span class="n">Bistrou</span><span class="p">,</span><span class="mi">471</span><span class="p">]</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="n">List</span> <span class="n">of</span> <span class="n">doctors</span><span class="p">:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="n">Doctor</span> <span class="p">[</span><span class="mi">42</span><span class="p">,</span><span class="n">Ms</span><span class="o">.</span><span class="p">,</span> <span class="n">Marie</span><span class="p">,</span> <span class="n">Pelissier</span><span class="p">,</span> <span class="mi">472</span><span class="p">]</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">Doctor</span> <span class="p">[</span><span class="mi">43</span><span class="p">,</span><span class="n">Mr</span><span class="o">.</span><span class="p">,</span> <span class="n">Jacques</span><span class="p">,</span> <span class="n">Bromard</span><span class="p">,</span> <span class="mi">497</span><span class="p">]</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">Doctor</span> <span class="p">[</span><span class="mi">44</span><span class="p">,</span><span class="n">Mr</span><span class="o">.</span><span class="p">,</span><span class="n">Philippe</span><span class="p">,</span><span class="n">Jandot</span><span class="p">,</span><span class="mi">510</span><span class="p">]</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="n">Doctor</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span><span class="n">Ms</span><span class="o">.</span><span class="p">,</span><span class="n">Justine</span><span class="p">,</span><span class="n">Jacquemot</span><span class="p">,</span><span class="mi">511</span><span class="p">]</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="n">The</span> <span class="n">following</span> <span class="n">error</span> <span class="n">occurred</span><span class="p">:</span> <span class="n">RdvMedecinsException</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="n">GetCreneauxMedecin</span><span class="p">,</span><span class="n">An</span> <span class="n">error</span> <span class="n">occurred</span> <span class="k">while</span> <span class="n">executing</span> <span class="n">the</span> <span class="n">command</span> <span class="n">definition</span><span class="o">.</span> <span class="n">For</span> <span class="n">more</span> <span class="n">details</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">internal</span> <span class="n">exception</span><span class="o">.</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p><span style="color: #000000">Line 13: The message indicates that the error occurred in the [GetCreneauxMedecin] method of the [DAO] layer. This method is as follows:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#008000">// list of time slots for a given doctor</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public </span><span style="color:#2b91af">List</span><span style="color:#000000">&lt;</span><span style="color:#2b91af">Creneau</span><span style="color:#000000">&gt; GetCreneauxMedecin(</span><span style="color:#0000ff">int </span><span style="color:#000000">idMedecin)</span></span>
+<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// list of time slots</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">try</span></span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// open persistence context</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
+<span class="odt-code-line"><span style="color:#000000">        {</span></span>
+<span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#008000">// retrieve the doctor and their available slots</span></span>
+<span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">doctor = context.Doctors.Include(</span><span style="color:#a31515">&quot;Slots&quot;</span><span style="color:#000000">).Single(m =&gt; m.Id == doctorId);</span></span>
+<span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#008000">// return the list of the doctor&#x27;s time slots</span></span>
+<span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#0000ff">return </span><span style="color:#000000">doctor.Slots.ToList&lt;</span><span style="color:#2b91af">Slot</span><span style="color:#000000">&gt;();</span></span>
+<span class="odt-code-line"><span style="color:#000000">        }</span></span>
+<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">catch </span><span style="color:#000000">(</span><span style="color:#2b91af">Exception </span><span style="color:#000000">ex)</span></span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000ff">throw new </span><span style="color:#2b91af">RdvMedecinsException</span><span style="color:#000000">(3, </span><span style="color:#a31515">&quot;GetCreneauxMedecin&quot;</span><span style="color:#000000">, ex);</span></span>
+<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line"><span style="color:#000000">}</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">Line 11: We recognize the </span><em>Include</em><span style="color: #000000"> keyword, which previously caused a program to crash. The previous code can be replaced with the following:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    <span style="color:#008000">// list of time slots for a given doctor</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public </span><span style="color:#2b91af">List</span><span style="color:#000000">&lt;</span><span style="color:#2b91af">Creneau</span><span style="color:#000000">&gt; GetCreneauxMedecin(</span><span style="color:#0000ff">int </span><span style="color:#000000">idMedecin)</span></span>
+<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// list of time slots</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">try</span></span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// open persistence context</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
+<span class="odt-code-line"><span style="color:#000000">        {</span></span>
+<span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#008000">// return the list of the doctor&#x27;s time slots</span></span>
+<span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#0000ff">return </span><span style="color:#000000">context.Slots.Where(c =&gt; c.DoctorId == doctorId).ToList&lt;</span><span style="color:#2b91af">Slot</span><span style="color:#000000">&gt;(); </span></span>
+<span class="odt-code-line"><span style="color:#000000">        }</span></span>
+<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">catch </span><span style="color:#000000">(</span><span style="color:#2b91af">Exception </span><span style="color:#000000">ex)</span></span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000ff">throw new </span><span style="color:#2b91af">RdvMedecinsException</span><span style="color:#000000">(3, </span><span style="color:#a31515">&quot;GetCreneauxMedecin&quot;</span><span style="color:#000000">, ex);</span></span>
+<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line"><span style="color:#000000">}</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">The new code even seems more consistent than the old one. In any case, this time the test program passes.</span></p>
+<p><span style="color: #000000">We create the project’s DLL as we did for the [</span><span style="color: #0000ff">RdvMedecins-SqlServer-02</span><span style="color: #000000">] project and gather all the project’s DLLs into a [lib] folder created within [</span><span style="color: #0000ff">RdvMedecins-PostgreSQL-02</span><span style="color: #000000">]. These will be the references for the [</span><span style="color: #0000ff">RdvMedecins-PostgreSQL-03</span><span style="color: #000000">] web project that follows.</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E2000000E5594A8288.png" style="display:inline-block; margin:4px;width:4.189cm;height:4.246cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E2000000E5594A8288.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p><span style="color: #000000">We are now ready to build the [ASP.NET] layer of our application:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005EA0000011617109CB3.png" style="display:inline-block; margin:4px;width:17.999cm;height:3.306cm;" class="odt-zoomable" data-zoom-src="images/10000000000005EA0000011617109CB3.png" /></td></tr></table>
+
+<p><span style="color: #000000">We will start with the [RdvMedecins-SqlServer-03] project. We duplicate this project’s folder into [RdvMedecins-PostgreSQL-03] [1]:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000059C000002683692BC67.png" style="display:inline-block; margin:4px;width:17.999cm;height:7.721cm;" class="odt-zoomable" data-zoom-src="images/100000000000059C000002683692BC67.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [2], using VS 2012 Express for the Web, we open the solution in the [RdvMedecins-PostgreSQL-03] folder;</span></li>
+<li><span style="color: #000000">In [3], we change both the solution name and the project name;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005CE0000017D56435433.png" style="display:inline-block; margin:4px;width:17.999cm;height:4.614cm;" class="odt-zoomable" data-zoom-src="images/10000000000005CE0000017D56435433.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [4], the project&#x27;s current references;</span></li>
+<li><span style="color: #000000">in [5], we delete them;</span></li>
+<li><span style="color: #000000">in [6], to replace them with references to the DLLs we just stored in a [lib] folder in the [RdvMedecins-PostgreSQL-02] project.</span></li>
+</ul>
+<p><span style="color: #000000">All that remains is to modify the [Web.config] file. We replace its current content with the content of the [App.config] file from the [RdvMedecins-PostgreSQL-02] project. Once this is done, we run the web project. It works. We must not forget to populate the database before running the web application.</span></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        Ce cours-tutoriel écrit par <strong>Serge Tahé</strong> est mis à disposition du public selon les termes de la
+        <em>Licence Creative Commons Attribution – Pas d’Utilisation Commerciale –
+        Partage dans les Mêmes Conditions 3.0 non transposé</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

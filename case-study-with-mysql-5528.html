@@ -1,0 +1,1162 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An introduction to Entity Framework 5 Code First through examples">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/en-ef5cf-oct-2012/case-study-with-mysql-5528.html">
+      
+      
+        <link rel="prev" href="case-study-with-sql-server-express-2012.html">
+      
+      
+        <link rel="next" href="case-study-with-oracle-database-express-edition-11g-release-2.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>4. Case Study with MySQL 5.5.28 - An introduction to Entity Framework 5 Code First through examples</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "An introduction to Entity Framework 5 Code First through examples";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-case-study-with-mysql-5528" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="An introduction to Entity Framework 5 Code First through examples" class="md-header__button md-logo" aria-label="An introduction to Entity Framework 5 Code First through examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            An introduction to Entity Framework 5 Code First through examples
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Case Study with MySQL 5.5.28
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer au mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer au mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/stahe/en-ef5cf-oct-2012" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="An introduction to Entity Framework 5 Code First through examples" class="md-nav__button md-logo" aria-label="An introduction to Entity Framework 5 Code First through examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    An introduction to Entity Framework 5 Code First through examples
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/stahe/en-ef5cf-oct-2012" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="the--a-case-study.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. The : A Case Study
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="case-study-with-sql-server-express-2012.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Case Study with SQL Server Express 2012
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Case Study with MySQL 5.5.28
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="case-study-with-mysql-5528.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Case Study with MySQL 5.5.28
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-installing-the-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Installing the tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-creating-the-database-from-the-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Creating the database from the entities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-multi-layer-architecture-based-on-ef-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Multi-layer architecture based on EF 5
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="case-study-with-oracle-database-express-edition-11g-release-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Case Study with Oracle Database Express Edition 11g Release 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="case-study-with-postgresql-921.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Case Study with PostgreSQL 9.2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="case-study-with-firebird-21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Case study with Firebird 2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Conclusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p><a id="refheading39797804107930"></a></p>
+<h1 id="4-case-study-with-mysql-5528">4. <span style="color: #365f91">Case Study with MySQL 5.5.28</span></h1>
+<p><a id="refheading39799804107930"></a></p>
+<h2 id="41-installing-the-tools">4.1. <span style="color: #4f81bd">Installing the tools</span></h2>
+<p><span style="color: #000000">The tools to be installed are as follows:</span></p>
+<ul>
+<li>the DBMS: [http://dev.mysql.com/downloads/];</li>
+<li>an administration tool: EMS SQL Manager for MySQL Freeware [http://www.sqlmanager.net/fr/products/mysql/manager/download].</li>
+</ul>
+<p><span style="color: #000000">In the following examples, the </span><strong><span style="color: #000000">root</span></strong><span style="color: #000000"> user has the password </span><strong><span style="color: #000000">root</span></strong><span style="color: #000000">.</span></p>
+<p><span style="color: #000000">Let’s start MySQL5. Here, we do this from the Windows Services window [1]. In [2], the DBMS is running.</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000063F000002B39BDA5A46.png" style="display:inline-block; margin:4px;width:17.999cm;height:7.779cm;" class="odt-zoomable" data-zoom-src="images/100000000000063F000002B39BDA5A46.png" /></td></tr></table>
+
+<p><span style="color: #000000">We now launch the [SQL Manager Lite for MySQL] tool, which we will use to administer the DBMS [3].</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005F5000001BD94FC8285.png" style="display:inline-block; margin:4px;width:17.999cm;height:5.253cm;" class="odt-zoomable" data-zoom-src="images/10000000000005F5000001BD94FC8285.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [4], we create a new database;</span></li>
+<li><span style="color: #000000">in [5], we specify the database name;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005A3000001FE9771C23F.png" style="display:inline-block; margin:4px;width:17.999cm;height:6.361cm;" class="odt-zoomable" data-zoom-src="images/10000000000005A3000001FE9771C23F.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [5], we log in as root / root;</span></li>
+<li><span style="color: #000000">In [6], we validate the SQL statement to be executed;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005FA0000030F51CBDD8F.png" style="display:inline-block; margin:4px;width:17.999cm;height:9.211cm;" class="odt-zoomable" data-zoom-src="images/10000000000005FA0000030F51CBDD8F.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [7], the database has been created. It must now be registered in [EMS Manager]. The information is correct. Click [OK];</span></li>
+<li><span style="color: #000000">In [8], we connect to it;</span></li>
+<li><span style="color: #000000">In [9], [EMS Manager] displays the database, which is currently empty.</span></li>
+</ul>
+<p><span style="color: #000000">We will now connect a VS 2012 project to this database.</span></p>
+<p><a id="refheading39801804107930"></a></p>
+<h2 id="42-creating-the-database-from-the-entities">4.2. <span style="color: #4f81bd">Creating the database from the entities</span></h2>
+<p><span style="color: #000000">We create the VS 2012 console project [RdvMedecins-MySQL-01] [1] below:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000058500000159A144D204.png" style="display:inline-block; margin:4px;width:17.999cm;height:4.396cm;" class="odt-zoomable" data-zoom-src="images/100000000000058500000159A144D204.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [2], add references to the project via NuGet;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000059B00000174A1C8FAB7.png" style="display:inline-block; margin:4px;width:17.999cm;height:4.665cm;" class="odt-zoomable" data-zoom-src="images/100000000000059B00000174A1C8FAB7.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [3], we add the EF 5 reference;</span></li>
+<li><span style="color: #000000">in [4], it is now in the references;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000565000001989C0FB306.png" style="display:inline-block; margin:4px;width:17.999cm;height:5.318cm;" class="odt-zoomable" data-zoom-src="images/1000000000000565000001989C0FB306.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [5], we repeat the process to add [MySQL.Data.Entities], which is an ADO.NET connector for Entity Framework. To find the package, we can use the search box [6];</span></li>
+<li><span style="color: #000000">in [7], two references appear: [MySQL.Data.Entities] and [MySQL.Data], the latter being a dependency of the former.</span></li>
+</ul>
+<p><span style="color: #000000">Now, we will build the [RdvMedecins-MySQL-01] project based on the [RdvMedecins-SqlServer-01] project.</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005C500000209F6C5AEB3.png" style="display:inline-block; margin:4px;width:17.999cm;height:6.348cm;" class="odt-zoomable" data-zoom-src="images/10000000000005C500000209F6C5AEB3.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">In [1], copy the selected items;</span></li>
+<li><span style="color: #000000">In [2], paste them into the [RdvMedecins-MySQL-01] project;</span></li>
+<li><span style="color: #000000">in [3], because there are multiple programs with a [Main] method, we need to specify the startup project.</span></li>
+</ul>
+<p><span style="color: #000000">At this point, the project should build successfully. Now, we will modify the [App.config] configuration file, which configures the database connection string and the </span><em>DbProviderFactory</em><span style="color: #000000">. It becomes the following:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span style="color:#0000ff">&lt;?</span><span style="color:#a31515">xml </span><span style="color:#0000ff">version=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">1.0</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">encoding=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">utf-8</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">?&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">configuration</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">configSections</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;!-- </span><span style="color:#008000">For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">section </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">entityFramework</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">requirePermission=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">false</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/configSections</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">startup</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">supportedRuntime </span><span style="color:#0000ff">version=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">v4.0</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">sku=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">.NETFramework,Version=v4.5</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/startup</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">entityFramework</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">defaultConnectionFactory </span><span style="color:#0000ff">type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/entityFramework</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;!-- </span><span style="color:#008000">connection string </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">myContext</span><span style="color:#000000">&quot;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">         connectionString=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Server=localhost;Database=rdvmedecins-ef;Uid=root;Pwd=root;</span><span style="color:#000000">&quot;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">         providerName=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/connectionStrings</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;!-- </span><span style="color:#008000">the provider factory </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">system.data</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySQL Data Provider</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">invariant=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">description=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">.NET Framework Data Provider for MySQL</span><span style="color:#000000">&quot;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">          type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=C5687FC88969C44D</span><span style="color:#000000">&quot;</span></span>
+<span class="odt-code-line"><span style="color:#000000">        /&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/system.data</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">/configuration</span><span style="color:#0000ff">&gt;</span></span>
+</code></pre></div>
+
+<ul>
+<li><span style="color: #000000">line 17: the connection string to the MySQL database [rdvmedecins-ef] that we created;</span></li>
+<li><span style="color: #000000">line 24: the version must match that of the [MySql.Data] reference in the project [1]:</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003D50000028DB1ACEBFD.png" style="display:inline-block; margin:4px;width:12.979cm;height:8.64cm;" class="odt-zoomable" data-zoom-src="images/10000000000003D50000028DB1ACEBFD.png" /></td></tr></table>
+
+<p><span style="color: #000000">There is also some configuration in the [Entities.cs] file where we specify the names of the tables and the schema to which they belong. This may vary depending on the DBMS. This is the case here, where there will be no schema. The [Entities.cs] file changes as follows:</span></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;MEDECINS&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;CLIENTS&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Client </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;SLOTS&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Creneau</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;RVS&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Rv</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">Let&#x27;s run the [CreateDB_01] [2] program. We get the following exception:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="color:#000000">Unhandled exception: System.Data.MetadataException: The specified schema is invalid. Errors:</span></span>
+<span class="odt-code-line"><span style="color:#000000">(11,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.</span></span>
+<span class="odt-code-line"><span style="color:#000000">(23,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.</span></span>
+<span class="odt-code-line"><span style="color:#000000">(33,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.</span></span>
+<span class="odt-code-line"><span style="color:#000000">(43,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.</span></span>
+<span class="odt-code-line"><span style="color:#000000">   to System.Data.Metadata.Edm.StoreItemCollection.Loader.ThrowOnNonWarningErrors</span></span>
+<span class="odt-code-line"><span style="color:#000000">()</span></span>
+<span class="odt-code-line"><span style="color:#000000">   ....</span></span>
+<span class="odt-code-line"><span style="color:#000000">   at RdvMedecins_01.CreateDB_01.Main(String[] args) in d:\data\istia-1213\c#\d</span></span>
+<span class="odt-code-line"><span style="color:#000000">vp\Entity Framework\RdvMedecins\RdvMedecins-MySQL-01\CreateDB_01.cs:line 15</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">The same error appears four times (lines 2–5). The </span><em><span style="color: #000000">rowversion</span></em><span style="color: #000000"> type suggests the field with the [Timestamp] annotation in the entities:</span></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Column</span><span style="color:#000000">(</span><span style="color:#a31515">&quot;TIMESTAMP&quot;</span><span style="color:#000000">)]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Timestamp</span><span style="color:#000000">]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public byte</span><span style="color:#000000">[] Timestamp { </span><span style="color:#0000ff">get</span><span style="color:#000000">; </span><span style="color:#0000ff">set</span><span style="color:#000000">; }</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">We decide to replace these three lines with the following:</span></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">ConcurrencyCheck</span><span style="color:#000000">]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Column</span><span style="color:#000000">(</span><span style="color:#a31515">&quot;VERSIONING&quot;</span><span style="color:#000000">)]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public </span><span style="color:#2b91af">DateTime</span><span style="color:#000000">? Versioning { </span><span style="color:#0000ff">get</span><span style="color:#000000">; </span><span style="color:#0000ff">set</span><span style="color:#000000">; }</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">We change the column type from </span><strong><span style="color: #000000">byte[] </span></strong><span style="color: #000000">to </span><strong><span style="color: #000000">DateTime?</span></strong><span style="color: #000000">. We do this because MySQL has a [TIMESTAMP] type that represents a date/time, and a column of this type is automatically updated by MySQL every time the row is updated. This will allow us to manage concurrent access.</span></p>
+<p><span style="color: #000000">The [Timestamp] annotation can only be applied to a column of type byte[]. We replace it with the [ConcurrencyCheck] annotation. Both of these annotations handle concurrent access. We do this for all four entities and then rerun the application. We then get the following error:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span style="color:#000000">Unhandled exception: MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;NOT NULL,        `ProductVersion` mediumtext NOT NULL);</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">ALTER TABLE `__MigrationH&#x27; at line 5</span></span>
+<span class="odt-code-line"><span style="color:#000000">   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()</span></span>
+<span class="odt-code-line"><span style="color:#000000">   to MySql.Data.MySqlClient.NativeDriver.GetResult(Int32&amp; affectedRow, Int32&amp; insertedId)</span></span>
+<span class="odt-code-line"><span style="color:#000000">   ...</span></span>
+<span class="odt-code-line"><span style="color:#000000">   to RdvMedecins_01.CreateDB_01.Main(String[] args) in d:\data\istia-1213\c#\d</span></span>
+<span class="odt-code-line"><span style="color:#000000">vp\Entity Framework\RdvMedecins\RdvMedecins-MySQL-01\CreateDB_01.cs:line 15</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">Line 1 indicates a syntax error in the SQL executed by MySQL. Since this was not generated by us but by the MySQL ADO.NET provider, we cannot correct this issue. However, we can see that tables have been created [1] below:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000062A000002907DD59AC2.png" style="display:inline-block; margin:4px;width:17.999cm;height:7.482cm;" class="odt-zoomable" data-zoom-src="images/100000000000062A000002907DD59AC2.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [2], we see the structure of the [clients] table [3].</span></li>
+</ul>
+<p><span style="color: #000000">There are several changes to make to the generated database:</span></p>
+<ul>
+<li><span style="color: #000000">the data type of the [VERSIONING] column is incorrect. It must be set to the MySQL [TIMESTAMP] type;</span></li>
+<li><span style="color: #000000">Recall that the [rvs] table has a unique constraint. It was not created during this generation;</span></li>
+<li><span style="color: #000000">The SQL Server ADO.NET connector generated foreign keys with the ON DELETE CASCADE clause. The MySQL ADO.NET connector did not do this.</span></li>
+</ul>
+<p><span style="color: #000000">As we did with SQL Server, we must therefore modify the generated database. We do not show how to make the modifications. We simply provide the script for creating the database:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"># SQL Manager Lite <span style="font-weight:bold">for </span>MySQL<span style="color:#000080"> 5.3.0.2</span></span>
+<span class="odt-code-line"><span style="color:#000000"># </span><span style="font-style:italic;color:#008000">---------------------------------------</span></span>
+<span class="odt-code-line"><span style="color:#000000"># Host</span><span style="color:#008080">     </span><span style="color:#000000"> : localhost</span></span>
+<span class="odt-code-line"><span style="color:#000000"># Port</span><span style="color:#008080">     </span><span style="color:#000000"> :</span><span style="color:#000080"> 3306</span></span>
+<span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Database</span><span style="color:#000000">: rdvmedecins-ef</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#008000">/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#008000">/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#008000">/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#008000">/*!40101 SET NAMES utf8 */</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#000000">SET </span><span style="color:#000080">FOREIGN_KEY_CHECKS=0</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">USE `rdvmedecins-ef`;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Structure for </span><span style="color:#000000">the `clients` </span><span style="font-weight:bold;color:#000000">table</span><span style="color:#000000">: </span></span>
+<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#000000">CREATE TABLE </span><span style="color:#000000">`clients` (</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL </span><span style="color:#000000">AUTO_INCREMENT,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`LAST_NAME` </span><span style="font-weight:bold;color:#000000">VARCHAR</span><span style="color:#000000">(</span><span style="color:#000080">30</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#000000">utf8_general_ci </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`LAST_NAME` </span><span style="font-weight:bold;color:#000000">VARCHAR</span><span style="color:#000000">(</span><span style="color:#000080">30</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#000000">utf8_general_ci </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`TITLE` </span><span style="font-weight:bold;color:#000000">VARCHAR</span><span style="color:#000000">(</span><span style="color:#000080">5</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#000000">utf8_general_ci </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`VERSIONING` </span><span style="font-weight:bold;color:#000000">TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">PRIMARY KEY USING </span><span style="color:#000000">BTREE (`ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#000000">)ENGINE=InnoDB</span></span>
+<span class="odt-code-line"><span style="color:#000080">AUTO_INCREMENT=96 AVG_ROW_LENGTH=4096 </span><span style="color:#000000">CHARACTER </span><span style="font-weight:bold;color:#000000">SET </span><span style="color:#800000">&#x27;utf8&#x27; </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#800000">&#x27;utf8_general_ci&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#800000">COMMENT=&#x27;&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#000000">;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Structure for </span><span style="color:#000000">the `medecins` </span><span style="font-weight:bold;color:#000000">table</span><span style="color:#000000">: </span></span>
+<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#000000">CREATE TABLE </span><span style="color:#000000">`doctors` (</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL </span><span style="color:#000000">AUTO_INCREMENT,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`LAST_NAME` </span><span style="font-weight:bold;color:#000000">VARCHAR</span><span style="color:#000000">(</span><span style="color:#000080">30</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#000000">utf8_general_ci </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`LAST_NAME` </span><span style="font-weight:bold;color:#000000">VARCHAR</span><span style="color:#000000">(</span><span style="color:#000080">30</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#000000">utf8_general_ci </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`TITLE` </span><span style="font-weight:bold;color:#000000">VARCHAR</span><span style="color:#000000">(</span><span style="color:#000080">5</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#000000">utf8_general_ci </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`VERSIONING` </span><span style="font-weight:bold;color:#000000">TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">PRIMARY KEY USING </span><span style="color:#000000">BTREE (`ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#000000">)ENGINE=InnoDB</span></span>
+<span class="odt-code-line"><span style="color:#000080">AUTO_INCREMENT=56 AVG_ROW_LENGTH=4096 </span><span style="color:#000000">CHARACTER </span><span style="font-weight:bold;color:#000000">SET </span><span style="color:#800000">&#x27;utf8&#x27; </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#800000">&#x27;utf8_general_ci&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#800000">COMMENT=&#x27;&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#000000">;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Structure for </span><span style="color:#000000">the `creneaux` </span><span style="font-weight:bold;color:#000000">table</span><span style="color:#000000">: </span></span>
+<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#000000">CREATE TABLE </span><span style="color:#000000">`slots` (</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL </span><span style="color:#000000">AUTO_INCREMENT,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`START_TIME` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`MDEBUT` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`END_TIME` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`MEND` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`DOCTOR_ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`VERSIONING` </span><span style="font-weight:bold;color:#000000">TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">PRIMARY KEY USING </span><span style="color:#000000">BTREE (`ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">   </span><span style="font-weight:bold;color:#000000">INDEX </span><span style="color:#000000">`MEDECIN_ID` </span><span style="font-weight:bold;color:#000000">USING </span><span style="color:#000000">BTREE (`MEDECIN_ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">CONSTRAINT </span><span style="color:#000000">`creneaux_ibfk_1` </span><span style="font-weight:bold;color:#000000">FOREIGN KEY </span><span style="color:#000000">(`MEDECIN_ID`) REFERENCES `medecins` (`ID`) </span><span style="font-weight:bold;color:#000000">ON DELETE CASCADE ON UPDATE NO ACTION</span></span>
+<span class="odt-code-line"><span style="color:#000000">)ENGINE=InnoDB</span></span>
+<span class="odt-code-line"><span style="color:#000080">AUTO_INCREMENT=472 AVG_ROW_LENGTH=455 </span><span style="color:#000000">CHARACTER </span><span style="font-weight:bold;color:#000000">SET </span><span style="color:#800000">&#x27;utf8&#x27; </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#800000">&#x27;utf8_general_ci&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#800000">COMMENT=&#x27;&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#000000">;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Structure for </span><span style="color:#000000">the `rvs` </span><span style="font-weight:bold;color:#000000">table</span><span style="color:#000000">: </span></span>
+<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#000000">CREATE TABLE </span><span style="color:#000000">`rvs` (</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL </span><span style="color:#000000">AUTO_INCREMENT,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`DAY` </span><span style="font-weight:bold;color:#000000">DATE NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`SLOT_ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`CLIENT_ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`VERSIONING` </span><span style="font-weight:bold;color:#000000">TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">PRIMARY KEY USING </span><span style="color:#000000">BTREE (`ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">UNIQUE INDEX </span><span style="color:#000000">`SLOT_ID_DAY` </span><span style="font-weight:bold;color:#000000">USING </span><span style="color:#000000">BTREE (`DAY`, `SLOT_ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">   </span><span style="font-weight:bold;color:#000000">INDEX </span><span style="color:#000000">`SLOT_ID` </span><span style="font-weight:bold;color:#000000">USING </span><span style="color:#000000">BTREE (`SLOT_ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">   </span><span style="font-weight:bold;color:#000000">INDEX </span><span style="color:#000000">`CLIENT_ID` </span><span style="font-weight:bold;color:#000000">USING </span><span style="color:#000000">BTREE (`CLIENT_ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">CONSTRAINT </span><span style="color:#000000">`rvs_ibfk_2` </span><span style="font-weight:bold;color:#000000">FOREIGN KEY </span><span style="color:#000000">(`CLIENT_ID`) REFERENCES `clients` (`ID`) </span><span style="font-weight:bold;color:#000000">ON DELETE CASCADE ON UPDATE NO ACTION</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">CONSTRAINT </span><span style="color:#000000">`rvs_ibfk_1` </span><span style="font-weight:bold;color:#000000">FOREIGN KEY </span><span style="color:#000000">(`CRENEAU_ID`) REFERENCES `creneaux` (`ID`) </span><span style="font-weight:bold;color:#000000">ON DELETE CASCADE ON UPDATE NO ACTION</span></span>
+<span class="odt-code-line"><span style="color:#000000">)ENGINE=InnoDB</span></span>
+<span class="odt-code-line"><span style="color:#000080">AUTO_INCREMENT=28 AVG_ROW_LENGTH=16384 </span><span style="color:#000000">CHARACTER </span><span style="font-weight:bold;color:#000000">SET </span><span style="color:#800000">&#x27;utf8&#x27; </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#800000">&#x27;utf8_general_ci&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#800000">COMMENT=&#x27;&#x27;</span></span>
+<span class="odt-code-line"><span style="color:#000000">;</span></span>
+</code></pre></div>
+
+<ul>
+<li><span style="color: #000000">lines 22, 38, 54, 74: the primary keys (ID) of the tables are of type AUTO_INCREMENT and are therefore generated by MySQL;</span></li>
+<li><span style="color: #000000">lines 26, 42, 60, 78: the VERSIONING column is of type TIMESTAMP and is updated during an INSERT or UPDATE;</span></li>
+<li><span style="color: #000000">line 63: the foreign key from the [slots] table to the [doctors] table with the ON DELETE CASCADE clause;</span></li>
+<li><span style="color: #000000">line 80: the uniqueness constraint on the [rvs] table;</span></li>
+<li><span style="color: #000000">line 83: the foreign key from the [rvs] table to the [slots] table with the ON DELETE CASCADE clause;</span></li>
+<li><span style="color: #000000">line 84: the foreign key from the [rvs] table to the [clients] table with the ON DELETE CASCADE clause;</span></li>
+</ul>
+<p><span style="color: #000000">The script for generating the tables in the MySQL database [rvmedecins-ef] has been placed in the folder [RdvMedecins / databases / mysql]. The reader can load and run it to create the tables.</span></p>
+<p><span style="color: #000000">Once this is done, the various programs in the project can be run. They produce the same results as with SQL Server, except for the [ModifyDetachedEntities] program, which crashes. To understand why, we can look at the output of the [ModifyAttachedEntities] program:</span></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>client1--before
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>Client [,xx,xx,xx,]
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>client1--after
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>Client [86,xx,xx,xx,]
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>client2
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>Client [86,xx,xx,xx,10/11/2012 11:31:12]
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>customer3
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>Client [86,xx,xx,yy,10/11/2012 11:31:12]
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><span style="color: #000000">Lines 1-2: a client before the context is saved;</span></li>
+<li><span style="color: #000000">lines 3-4: the client after saving. It has a primary key but no value for its [Versioning] field, whereas SQL Server updated the entity&#x27;s [Timestamp] field.</span></li>
+</ul>
+<p><span style="color: #000000">Now let&#x27;s examine the code for the [ModifyDetachedEntities] program that crashes:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span style="color:#0000ff">using </span>System;</span>
+<span class="odt-code-line"><span style="color:#000000">...</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#0000ff">namespace </span><span style="color:#000000">RdvMedecins_01</span></span>
+<span class="odt-code-line"><span style="color:#000000">{</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">class </span><span style="color:#2b91af">ModifyDetachedEntities</span></span>
+<span class="odt-code-line"><span style="color:#000000">  {</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">static void </span><span style="color:#000000">Main(</span><span style="color:#0000ff">string</span><span style="color:#000000">[] args)</span></span>
+<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#2b91af">Client </span><span style="color:#000000">client1;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// clear the current database</span></span>
+<span class="odt-code-line"><span style="color:#000000">      Erase();</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// add a client</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// create client</span></span>
+<span class="odt-code-line"><span style="color:#000000">        client1 = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">Client </span><span style="color:#000000">{ Title = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">, LastName = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">, FirstName = </span><span style="color:#a31515">&quot;x&quot; </span><span style="color:#000000">};</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// Add the client to the context</span></span>
+<span class="odt-code-line"><span style="color:#000000">        context.Clients.Add(client1);</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// Save the context</span></span>
+<span class="odt-code-line"><span style="color:#000000">        context.SaveChanges();</span></span>
+<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// basic display</span></span>
+<span class="odt-code-line"><span style="color:#000000">      Dump(</span><span style="color:#a31515">&quot;1-----------------------------&quot;</span><span style="color:#000000">);</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// client1 is not in the context - modify it</span></span>
+<span class="odt-code-line"><span style="color:#000000">      client1.Name = </span><span style="color:#a31515">&quot;y&quot;</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// modifying an entity outside the context</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// here, we have a new empty context</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we put client1 into the context in a modified state</span></span>
+<span class="odt-code-line"><span style="color:#000000">        context.Entry(client1).State = </span><span style="color:#2b91af">EntityState</span><span style="color:#000000">.Modified;</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we save the context</span></span>
+<span class="odt-code-line"><span style="color:#000000">        context.SaveChanges();</span></span>
+<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line"><span style="color:#000000">      ...</span></span>
+<span class="odt-code-line"><span style="color:#000000">    }</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">static void </span><span style="color:#000000">Erase()</span></span>
+<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">...</span></span>
+<span class="odt-code-line"><span style="color:#000000">    }</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">static void </span><span style="color:#000000">Dump(</span><span style="color:#0000ff">string </span><span style="color:#000000">str)</span></span>
+<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line"><span style="color:#000000">      ...</span></span>
+<span class="odt-code-line"><span style="color:#000000">    }</span></span>
+<span class="odt-code-line"><span style="color:#000000">  }</span></span>
+<span class="odt-code-line"><span style="color:#000000">}</span></span>
+</code></pre></div>
+
+<ul>
+<li><span style="color: #000000">Line 20: A client is saved. It now has its primary key, but based on its version;</span></li>
+<li><span style="color: #000000">line 33: a modification is made with client1. It fails because it does not have the version stored in the database.</span></li>
+</ul>
+<p><span style="color: #000000">We solve the problem by inserting the following code between lines 25 and 26:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">      <span style="color:#008000">// retrieve client1 to get its version</span></span>
+<span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
+<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// client2 will be in the context</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#2b91af">Client </span><span style="color:#000000">client2 = context.Clients.Find(client1.Id);</span></span>
+<span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// Set client1&#x27;s version to that of client2</span></span>
+<span class="odt-code-line"><span style="color:#000000">        client1.Versioning = client2.Versioning;</span></span>
+<span class="odt-code-line"><span style="color:#000000">}</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">Now, the [</span>client1] <span style="color: #000000">entity has the same version as in the database and can therefore be used to update the row in the database.</span></p>
+<p><a id="refheading39803804107930"></a></p>
+<h2 id="43-multi-layer-architecture-based-on-ef-5">4.3. <span style="color: #4f81bd">Multi-layer architecture based on EF 5</span></h2>
+<p><span style="color: #000000">Let’s return to the case study described in section</span><a href="#etude-de-cas"><u><span style="color: #0563c1"> 2</span></u></a><span style="color: #000000">.</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005F50000012077918B5B.png" style="display:inline-block; margin:4px;width:17.999cm;height:3.399cm;" class="odt-zoomable" data-zoom-src="images/10000000000005F50000012077918B5B.png" /></td></tr></table>
+
+<p><span style="color: #000000">We will start by building the [DAO] data access layer. To do this, we create the VS 2012 console project [RdvMedecins-MySQL-02] [1]:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005B90000014B6315343F.png" style="display:inline-block; margin:4px;width:17.999cm;height:4.068cm;" class="odt-zoomable" data-zoom-src="images/10000000000005B90000014B6315343F.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [2], the references [Common.Logging, EntityFramework, MySql.Data, MySql.Data.Entity, Spring.Core] are added using NuGet;</span></li>
+<li><span style="color: #000000">in [3], the [Models] folder is copied from the [RdvMedecins-MySQL-01] project;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005670000014406B4BB75.png" style="display:inline-block; margin:4px;width:17.999cm;height:4.217cm;" class="odt-zoomable" data-zoom-src="images/10000000000005670000014406B4BB75.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [4], the folders [Dao, Exception, Tests] and the file [App.config] are copied from the [RdvMedecins-SqlServer-02] project;</span></li>
+<li><span style="color: #000000">in [5], the [Program.cs] file has been deleted;</span></li>
+<li><span style="color: #000000">in [6], the project is configured to run the [DAO] layer test program.</span></li>
+</ul>
+<p><span style="color: #000000">In the [App.config] file, the SQL Server database information is replaced with that of the MySQL database. This information can be found in the [App.config] file of the [RdvMedecins-MySQL-01] project:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span style="color:#0000ff">&lt;!-- </span><span style="color:#008000">connection string </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">myContext</span><span style="color:#000000">&quot;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">         connectionString=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Server=localhost;Database=rdvmedecins-ef;Uid=root;Pwd=root;</span><span style="color:#000000">&quot;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">         providerName=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/connectionStrings</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;!-- </span><span style="color:#008000">the factory provider </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">system.data</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySQL Data Provider</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">invariant=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">description=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">.NET Framework Data Provider for MySQL</span><span style="color:#000000">&quot;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">          type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=C5687FC88969C44D</span><span style="color:#000000">&quot;</span></span>
+<span class="odt-code-line"><span style="color:#000000">        /&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/system.data</span><span style="color:#0000ff">&gt;</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">The objects managed by Spring also change. Currently we have:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;!-- </span><span style="color:#008000">Spring configuration </span><span style="color:#0000ff">--&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">spring</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">context</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">resource </span><span style="color:#0000ff">uri=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">config://spring/objects</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/context</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">objects </span><span style="color:#0000ff">xmlns=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">http://www.springframework.net</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">object </span><span style="color:#0000ff">id=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">rdvmedecinsDao</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">RdvMedecins.Dao.Dao,RdvMedecins-SqlServer-02</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">/&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/objects</span><span style="color:#0000ff">&gt;</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">&lt;</span><span style="color:#a31515">/spring</span><span style="color:#0000ff">&gt;</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">Line 7 references the assembly for the [</span><span style="color: #0000ff">RdvMedecins-SqlServer-02</span><span style="color: #000000">] project. The assembly is now [</span><span style="color: #0000ff">RdvMedecins-MySQL-02</span><span style="color: #000000">].</span></p>
+<p><span style="color: #000000">With that done, we are ready to run the [DAO] layer test. First, we must ensure the database is populated (using the [Fill] program from the [</span><span style="color: #0000ff">RdvMedecins-MySQL-01</span><span style="color: #000000">] project). The test program runs successfully.</span></p>
+<p><span style="color: #000000">We create the project&#x27;s DLL as we did for the [</span><span style="color: #0000ff">RdvMedecins-SqlServer-02</span><span style="color: #000000">] project, and we place all the project&#x27;s DLLs in a [lib] folder created within [</span><span style="color: #0000ff">RdvMedecins-MySQL-02</span><span style="color: #000000">]. These will serve as references for the [</span><span style="color: #0000ff">RdvMedecins-MySQL-03</span><span style="color: #000000">] web project, which we will cover next.</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000102000000E037C4810C.png" style="display:inline-block; margin:4px;width:4.78cm;height:4.15cm;" class="odt-zoomable" data-zoom-src="images/1000000000000102000000E037C4810C.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p><span style="color: #000000">We are now ready to build the [ASP.NET] layer of our application:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005EA000001198FA111DE.png" style="display:inline-block; margin:4px;width:17.999cm;height:3.341cm;" class="odt-zoomable" data-zoom-src="images/10000000000005EA000001198FA111DE.png" /></td></tr></table>
+
+<p><span style="color: #000000">We will start with the [RdvMedecins-SqlServer-03] project. We duplicate this project’s folder into [RdvMedecins-MySQL-03] [1]:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005B400000205E86B00AC.png" style="display:inline-block; margin:4px;width:17.999cm;height:6.375cm;" class="odt-zoomable" data-zoom-src="images/10000000000005B400000205E86B00AC.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [2], using VS 2012 Express for the Web, we open the solution in the [RdvMedecins-MySQL-03] folder;</span></li>
+<li><span style="color: #000000">In [3], we change both the solution name and the project name;</span></li>
+</ul>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000056E0000018E9D1495BD.png" style="display:inline-block; margin:4px;width:17.999cm;height:5.154cm;" class="odt-zoomable" data-zoom-src="images/100000000000056E0000018E9D1495BD.png" /></td></tr></table>
+
+<ul>
+<li><span style="color: #000000">in [4], the project&#x27;s current references;</span></li>
+<li><span style="color: #000000">in [5], we delete them;</span></li>
+<li><span style="color: #000000">in [6], to replace them with references to the DLLs we just stored in a [lib] folder within the [RdvMedecins-MySQL-02] project.</span></li>
+</ul>
+<p><span style="color: #000000">All that remains is to modify the [Web.config] file. We replace its current content with the content of the [App.config] file from the [RdvMedecins-MySQL-02] project. Once this is done, we run the web project. It works.</span></p>
+<p><a id="refheading39805804107930"></a></p>
+<h2 id="44-conclusion">4.4. <span style="color: #4f81bd">Conclusion</span></h2>
+<p><span style="color: #000000">Let’s summarize what was done to switch from the SQL Server DBMS to the MySQL DBMS:</span></p>
+<ul>
+<li><span style="color: #000000">The field used to manage concurrent access to entities was changed. Its SQL Server version was:</span></li>
+</ul>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    [<span style="color:#2b91af">Column</span>(<span style="color:#a31515">&quot;TIMESTAMP&quot;</span>)]</span>
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Timestamp</span><span style="color:#000000">]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public byte</span><span style="color:#000000">[] Timestamp { </span><span style="color:#0000ff">get</span><span style="color:#000000">; </span><span style="color:#0000ff">set</span><span style="color:#000000">; }</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">It has become:</span></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">    [<span style="color:#2b91af">ConcurrencyCheck</span>]</span>
+<span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Column</span><span style="color:#000000">(</span><span style="color:#a31515">&quot;VERSIONING&quot;</span><span style="color:#000000">)]</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public </span><span style="color:#2b91af">DateTime</span><span style="color:#000000">? Versioning { </span><span style="color:#0000ff">get</span><span style="color:#000000">; </span><span style="color:#0000ff">set</span><span style="color:#000000">; }</span></span>
+</code></pre></div>
+
+<p><span style="color: #000000">with MySQL;</span></p>
+<ul>
+<li><span style="color: #000000">the [Table] annotations that link an entity to a table have been changed;</span></li>
+<li><span style="color: #000000">the database connection string and the [DbProviderFactory] have been modified in the [App.config] and [Web.config] configuration files;</span></li>
+<li><span style="color: #000000">After saving to the database, an SQL Server entity had both its primary key and its </span><em>timestamp</em><span style="color: #000000">. With MySQL, it only had its primary key. This required a code change.</span></li>
+</ul>
+<p><span style="color: #000000">In the end, there were relatively few changes, but we still had to review the code. We are repeating the same process for three other DBMSs:</span></p>
+<ul>
+<li><strong>Oracle Database Express Edition 11g Release 2;</strong></li>
+<li><strong>The PostgreSQL 9.2.1 DBMS</strong>;</li>
+<li><strong>The Firebird 2.1 DBMS</strong>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        Ce cours-tutoriel écrit par <strong>Serge Tahé</strong> est mis à disposition du public selon les termes de la
+        <em>Licence Creative Commons Attribution – Pas d’Utilisation Commerciale –
+        Partage dans les Mêmes Conditions 3.0 non transposé</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
