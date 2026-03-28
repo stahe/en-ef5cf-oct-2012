@@ -711,19 +711,19 @@
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;MEDECINS&quot;</span>, Schema = <span style="color:#a31515">&quot;public&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;CLIENTS&quot;</span>, Schema = <span style="color:#a31515">&quot;public&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Client </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;SLOTS&quot;</span>, Schema = <span style="color:#a31515">&quot;public&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Creneau</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;RVS&quot;</span>, Schema = <span style="color:#a31515">&quot;public&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Rv</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">We saw earlier when creating a PostgreSQL database that the tables belonged to a schema called </span><strong>public</strong><span style="color: #000000">.</span></p>
@@ -860,24 +860,24 @@
 <p><span style="color: #000000">The incorrect code is as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">      <span style="color:#0000ff">using </span>(<span style="color:#0000ff">var </span>context = <span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span>())</span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// slot #0</span></span>
 <span class="odt-code-line"><span style="color:#000000">        slot = context.Slots.Include(</span><span style="color:#a31515">&quot;Doctor&quot;</span><span style="color:#000000">).Single&lt;</span><span style="color:#2b91af">Slot</span><span style="color:#000000">&gt;(c =&gt; c.Id == slotId);</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#2b91af">Console</span><span style="color:#000000">.WriteLine(slot.ShortIdentity());</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line">}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">Line 1 of the exception: the reported error suggests a join because LEFT is a join keyword. Since line 4 of the code above requests the immediate loading of the [Doctor] dependency for an [Appointment] entity, EF performed a join between the [APPOINTMENTS] and [DOCTORS] tables. However, it appears that the ADO.NET connector generated an incorrect SQL statement. We rewrite the code as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">      <span style="color:#0000ff">using </span>(<span style="color:#0000ff">var </span>context = <span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span>())</span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// slot #0</span></span>
-<span class="odt-code-line"><span style="color:#000000">        slot = context.Slots.Find(slotId);</span></span>
+<span class="odt-code-line">        slot = context.Slots.Find(slotId);</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#2b91af">Console</span><span style="color:#000000">.WriteLine(slot.ShortIdentity());</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we force the loading of the associated doctor</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// this is possible because we are still in an open context</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">doctor = slot.Doctor;</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line">}</span>
 </code></pre></div>
 
 <ul>
@@ -974,46 +974,46 @@
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">    <span style="color:#008000">// list of time slots for a given doctor</span></span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public </span><span style="color:#2b91af">List</span><span style="color:#000000">&lt;</span><span style="color:#2b91af">Creneau</span><span style="color:#000000">&gt; GetCreneauxMedecin(</span><span style="color:#0000ff">int </span><span style="color:#000000">idMedecin)</span></span>
-<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line">    {</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// list of time slots</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">try</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// open persistence context</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
-<span class="odt-code-line"><span style="color:#000000">        {</span></span>
+<span class="odt-code-line">        {</span>
 <span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#008000">// retrieve the doctor and their available slots</span></span>
 <span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">doctor = context.Doctors.Include(</span><span style="color:#a31515">&quot;Slots&quot;</span><span style="color:#000000">).Single(m =&gt; m.Id == doctorId);</span></span>
 <span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#008000">// return the list of the doctor&#x27;s time slots</span></span>
 <span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#0000ff">return </span><span style="color:#000000">doctor.Slots.ToList&lt;</span><span style="color:#2b91af">Slot</span><span style="color:#000000">&gt;();</span></span>
-<span class="odt-code-line"><span style="color:#000000">        }</span></span>
-<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">      }</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">catch </span><span style="color:#000000">(</span><span style="color:#2b91af">Exception </span><span style="color:#000000">ex)</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000ff">throw new </span><span style="color:#2b91af">RdvMedecinsException</span><span style="color:#000000">(3, </span><span style="color:#a31515">&quot;GetCreneauxMedecin&quot;</span><span style="color:#000000">, ex);</span></span>
-<span class="odt-code-line"><span style="color:#000000">      }</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line">      }</span>
+<span class="odt-code-line">}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">Line 11: We recognize the </span><em>Include</em><span style="color: #000000"> keyword, which previously caused a program to crash. The previous code can be replaced with the following:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">    <span style="color:#008000">// list of time slots for a given doctor</span></span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">public </span><span style="color:#2b91af">List</span><span style="color:#000000">&lt;</span><span style="color:#2b91af">Creneau</span><span style="color:#000000">&gt; GetCreneauxMedecin(</span><span style="color:#0000ff">int </span><span style="color:#000000">idMedecin)</span></span>
-<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line">    {</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// list of time slots</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">try</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// open persistence context</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
-<span class="odt-code-line"><span style="color:#000000">        {</span></span>
+<span class="odt-code-line">        {</span>
 <span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#008000">// return the list of the doctor&#x27;s time slots</span></span>
 <span class="odt-code-line"><span style="color:#000000">          </span><span style="color:#0000ff">return </span><span style="color:#000000">context.Slots.Where(c =&gt; c.DoctorId == doctorId).ToList&lt;</span><span style="color:#2b91af">Slot</span><span style="color:#000000">&gt;(); </span></span>
-<span class="odt-code-line"><span style="color:#000000">        }</span></span>
-<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line">        }</span>
+<span class="odt-code-line">      }</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">catch </span><span style="color:#000000">(</span><span style="color:#2b91af">Exception </span><span style="color:#000000">ex)</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#0000ff">throw new </span><span style="color:#2b91af">RdvMedecinsException</span><span style="color:#000000">(3, </span><span style="color:#a31515">&quot;GetCreneauxMedecin&quot;</span><span style="color:#000000">, ex);</span></span>
-<span class="odt-code-line"><span style="color:#000000">      }</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line">      }</span>
+<span class="odt-code-line">}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">The new code even seems more consistent than the old one. In any case, this time the test program passes.</span></p>
@@ -1077,9 +1077,9 @@
           https://tahe.developpez.com
         </a>
         <br>
-        Ce cours-tutoriel écrit par <strong>Serge Tahé</strong> est mis à disposition du public selon les termes de la
-        <em>Licence Creative Commons Attribution – Pas d’Utilisation Commerciale –
-        Partage dans les Mêmes Conditions 3.0 non transposé</em>.
+        This tutorial, written by <strong>Serge Tahé</strong>, is made available to the public under the terms of the
+        <em>Creative Commons Attribution – Non-Commercial –
+        ShareAlike 3.0 Unported Licence</em>.
       </div>
 
     </div>

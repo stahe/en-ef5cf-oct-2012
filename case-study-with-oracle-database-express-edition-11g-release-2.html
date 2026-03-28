@@ -751,19 +751,19 @@
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;DOCTORS&quot;</span>, Schema = <span style="color:#a31515">&quot;RDVDOCTORS-EF&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;CLIENTS&quot;</span>, Schema = <span style="color:#a31515">&quot;RDVMEDECINS-EF&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Client </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;RVS&quot;</span>, Schema = <span style="color:#a31515">&quot;RDVMEDECINS-EF&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Appointment</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;SLOTS&quot;</span>, Schema = <span style="color:#a31515">&quot;RDVMEDECINS-EF&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Slot</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">We configure the project build:</span></p>
@@ -830,20 +830,20 @@
 <span class="odt-code-line"><span style="color:#0000ff">using </span><span style="color:#000000">RdvMedecins.Models;</span></span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="color:#0000ff">namespace </span><span style="color:#000000">RdvMedecins_01</span></span>
-<span class="odt-code-line"><span style="color:#000000">{</span></span>
+<span class="odt-code-line">{</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">class </span><span style="color:#2b91af">CreateDB_01</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {</span></span>
+<span class="odt-code-line">  {</span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">static void </span><span style="color:#000000">Main(</span><span style="color:#0000ff">string</span><span style="color:#000000">[] args)</span></span>
-<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line">    {</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// Create the </span><span style="color:#000000">database</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#2b91af">Database</span><span style="color:#000000">.SetInitializer(</span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsInitializer</span><span style="color:#000000">());</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        context.Database.Initialize(</span><span style="color:#0000ff">false</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">      }</span></span>
-<span class="odt-code-line"><span style="color:#000000">    }</span></span>
-<span class="odt-code-line"><span style="color:#000000">  }</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line">      }</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line">}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">Line 15 triggers the execution of the [RdvMedecinsInitializer] class (line 12). This class is as follows:</span></p>
@@ -964,25 +964,25 @@
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">      <span style="color:#008000">// delete entity out of context</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// here, we have a new empty context</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we set client1 in the context to a deleted state</span></span>
 <span class="odt-code-line"><span style="color:#000000">        context.Entry(client1).State = </span><span style="color:#2b91af">EntityState</span><span style="color:#000000">.Deleted;</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we save the context</span></span>
-<span class="odt-code-line"><span style="color:#000000">        context.SaveChanges();</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line">        context.SaveChanges();</span>
+<span class="odt-code-line">}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">EF 5 refused to delete </span><em>client1</em> <span style="color: #000000">from the database because </span><em>client1</em> <span style="color: #000000">(line 6) did not have the same version. We had not encountered this problem with MySQL. We are gradually realizing that the ADO.NET connectors for different DBMSs have slight differences. We correct it as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line"><span style="color:#0000ff">using </span>(<span style="color:#0000ff">var </span>context = <span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span>())</span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// here, we have a new empty context</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we add client1 to the context to delete it</span></span>
-<span class="odt-code-line"><span style="color:#000000">        context.Clients.Remove(context.Clients.Find(client1.Id));</span></span>
+<span class="odt-code-line">        context.Clients.Remove(context.Clients.Find(client1.Id));</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we save the context</span></span>
-<span class="odt-code-line"><span style="color:#000000">        context.SaveChanges();</span></span>
-<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line">        context.SaveChanges();</span>
+<span class="odt-code-line">      }</span>
 </code></pre></div>
 
 <p><span style="color: #000000">and it works. </span></p>
@@ -1106,9 +1106,9 @@
           https://tahe.developpez.com
         </a>
         <br>
-        Ce cours-tutoriel écrit par <strong>Serge Tahé</strong> est mis à disposition du public selon les termes de la
-        <em>Licence Creative Commons Attribution – Pas d’Utilisation Commerciale –
-        Partage dans les Mêmes Conditions 3.0 non transposé</em>.
+        This tutorial, written by <strong>Serge Tahé</strong>, is made available to the public under the terms of the
+        <em>Creative Commons Attribution – Non-Commercial –
+        ShareAlike 3.0 Unported Licence</em>.
       </div>
 
     </div>

@@ -711,7 +711,7 @@
 <span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
 <span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySQL Data Provider</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">invariant=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">description=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">.NET Framework Data Provider for MySQL</span><span style="color:#000000">&quot;</span></span>
 <span class="odt-code-line"><span style="color:#0000ff">          type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=C5687FC88969C44D</span><span style="color:#000000">&quot;</span></span>
-<span class="odt-code-line"><span style="color:#000000">        /&gt;</span></span>
+<span class="odt-code-line">        /&gt;</span>
 <span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
 <span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/system.data</span><span style="color:#0000ff">&gt;</span></span>
 <span class="odt-code-line"></span>
@@ -728,35 +728,42 @@
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;MEDECINS&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Doctor </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;CLIENTS&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Client </span><span style="color:#000000">: </span><span style="color:#2b91af">Person</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;SLOTS&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Creneau</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line">  [<span style="color:#2b91af">Table</span>(<span style="color:#a31515">&quot;RVS&quot;</span>)]</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">public class </span><span style="color:#2b91af">Rv</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {...}</span></span>
+<span class="odt-code-line">  {...}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">Let&#x27;s run the [CreateDB_01] [2] program. We get the following exception:</span></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span style="color:#000000">Unhandled exception: System.Data.MetadataException: The specified schema is invalid. Errors:</span></span>
-<span class="odt-code-line"><span style="color:#000000">(11,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.</span></span>
-<span class="odt-code-line"><span style="color:#000000">(23,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.</span></span>
-<span class="odt-code-line"><span style="color:#000000">(33,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.</span></span>
-<span class="odt-code-line"><span style="color:#000000">(43,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.</span></span>
-<span class="odt-code-line"><span style="color:#000000">   to System.Data.Metadata.Edm.StoreItemCollection.Loader.ThrowOnNonWarningErrors</span></span>
-<span class="odt-code-line"><span style="color:#000000">()</span></span>
-<span class="odt-code-line"><span style="color:#000000">   ....</span></span>
-<span class="odt-code-line"><span style="color:#000000">   at RdvMedecins_01.CreateDB_01.Main(String[] args) in d:\data\istia-1213\c#\d</span></span>
-<span class="odt-code-line"><span style="color:#000000">vp\Entity Framework\RdvMedecins\RdvMedecins-MySQL-01\CreateDB_01.cs:line 15</span></span>
-</code></pre></div>
-
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>Unhandled exception: System.Data.MetadataException: The specified schema is invalid. Errors:
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>(11,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>(23,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>(33,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>(43,6): error 0040: The rowversion type is not qualified with a namespace or alias. Only primitive types can be used without qualification.
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>   to System.Data.Metadata.Edm.StoreItemCollection.Loader.ThrowOnNonWarningErrors
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>()
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>   ....
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>   at RdvMedecins_01.CreateDB_01.Main(String[] args) in d:\data\istia-1213\c#\d
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>vp\Entity Framework\RdvMedecins\RdvMedecins-MySQL-01\CreateDB_01.cs:line 15
+</code></pre></div></td></tr></table></div>
 <p><span style="color: #000000">The same error appears four times (lines 2–5). The </span><em><span style="color: #000000">rowversion</span></em><span style="color: #000000"> type suggests the field with the [Timestamp] annotation in the entities:</span></p>
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line"><span style="color:#000000">    [</span><span style="color:#2b91af">Column</span><span style="color:#000000">(</span><span style="color:#a31515">&quot;TIMESTAMP&quot;</span><span style="color:#000000">)]</span></span>
@@ -773,17 +780,22 @@
 
 <p><span style="color: #000000">We change the column type from </span><strong><span style="color: #000000">byte[] </span></strong><span style="color: #000000">to </span><strong><span style="color: #000000">DateTime?</span></strong><span style="color: #000000">. We do this because MySQL has a [TIMESTAMP] type that represents a date/time, and a column of this type is automatically updated by MySQL every time the row is updated. This will allow us to manage concurrent access.</span></p>
 <p><span style="color: #000000">The [Timestamp] annotation can only be applied to a column of type byte[]. We replace it with the [ConcurrencyCheck] annotation. Both of these annotations handle concurrent access. We do this for all four entities and then rerun the application. We then get the following error:</span></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
-<span class="odt-code-line"><span style="color:#000000">Unhandled exception: MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;NOT NULL,        `ProductVersion` mediumtext NOT NULL);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">ALTER TABLE `__MigrationH&#x27; at line 5</span></span>
-<span class="odt-code-line"><span style="color:#000000">   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()</span></span>
-<span class="odt-code-line"><span style="color:#000000">   to MySql.Data.MySqlClient.NativeDriver.GetResult(Int32&amp; affectedRow, Int32&amp; insertedId)</span></span>
-<span class="odt-code-line"><span style="color:#000000">   ...</span></span>
-<span class="odt-code-line"><span style="color:#000000">   to RdvMedecins_01.CreateDB_01.Main(String[] args) in d:\data\istia-1213\c#\d</span></span>
-<span class="odt-code-line"><span style="color:#000000">vp\Entity Framework\RdvMedecins\RdvMedecins-MySQL-01\CreateDB_01.cs:line 15</span></span>
-</code></pre></div>
-
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>Unhandled exception: MySql.Data.MySqlClient.MySqlException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;NOT NULL,        <span class="sb">`ProductVersion`</span> mediumtext NOT NULL);
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>ALTER TABLE `__MigrationH&#39; at line 5
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>   to MySql.Data.MySqlClient.NativeDriver.GetResult(Int32&amp; affectedRow, Int32&amp; insertedId)
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>   ...
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>   to RdvMedecins_01.CreateDB_01.Main(String[] args) in d:\data\istia-1213\c#\d
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>vp\Entity Framework\RdvMedecins\RdvMedecins-MySQL-01\CreateDB_01.cs:line 15
+</code></pre></div></td></tr></table></div>
 <p><span style="color: #000000">Line 1 indicates a syntax error in the SQL executed by MySQL. Since this was not generated by us but by the MySQL ADO.NET provider, we cannot correct this issue. However, we can see that tables have been created [1] below:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000062A000002907DD59AC2.png" style="display:inline-block; margin:4px;width:17.999cm;height:7.482cm;" class="odt-zoomable" data-zoom-src="images/100000000000062A000002907DD59AC2.png" /></td></tr></table>
 
@@ -812,11 +824,11 @@
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="font-weight:bold;color:#000000">SET </span><span style="color:#000080">FOREIGN_KEY_CHECKS=0</span><span style="color:#000000">;</span></span>
 <span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">USE `rdvmedecins-ef`;</span></span>
+<span class="odt-code-line">USE `rdvmedecins-ef`;</span>
 <span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line">#</span>
 <span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Structure for </span><span style="color:#000000">the `clients` </span><span style="font-weight:bold;color:#000000">table</span><span style="color:#000000">: </span></span>
-<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line">#</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="font-weight:bold;color:#000000">CREATE TABLE </span><span style="color:#000000">`clients` (</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL </span><span style="color:#000000">AUTO_INCREMENT,</span></span>
@@ -825,14 +837,14 @@
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`TITLE` </span><span style="font-weight:bold;color:#000000">VARCHAR</span><span style="color:#000000">(</span><span style="color:#000080">5</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#000000">utf8_general_ci </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`VERSIONING` </span><span style="font-weight:bold;color:#000000">TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span style="color:#000000">,</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">PRIMARY KEY USING </span><span style="color:#000000">BTREE (`ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#000000">)ENGINE=InnoDB</span></span>
+<span class="odt-code-line">)ENGINE=InnoDB</span>
 <span class="odt-code-line"><span style="color:#000080">AUTO_INCREMENT=96 AVG_ROW_LENGTH=4096 </span><span style="color:#000000">CHARACTER </span><span style="font-weight:bold;color:#000000">SET </span><span style="color:#800000">&#x27;utf8&#x27; </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#800000">&#x27;utf8_general_ci&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#800000">COMMENT=&#x27;&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#000000">;</span></span>
+<span class="odt-code-line">COMMENT=&#x27;&#x27;</span>
+<span class="odt-code-line">;</span>
 <span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line">#</span>
 <span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Structure for </span><span style="color:#000000">the `medecins` </span><span style="font-weight:bold;color:#000000">table</span><span style="color:#000000">: </span></span>
-<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line">#</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="font-weight:bold;color:#000000">CREATE TABLE </span><span style="color:#000000">`doctors` (</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL </span><span style="color:#000000">AUTO_INCREMENT,</span></span>
@@ -841,14 +853,14 @@
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`TITLE` </span><span style="font-weight:bold;color:#000000">VARCHAR</span><span style="color:#000000">(</span><span style="color:#000080">5</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#000000">utf8_general_ci </span><span style="font-weight:bold;color:#000000">NOT NULL</span><span style="color:#000000">,</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`VERSIONING` </span><span style="font-weight:bold;color:#000000">TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span style="color:#000000">,</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">PRIMARY KEY USING </span><span style="color:#000000">BTREE (`ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#000000">)ENGINE=InnoDB</span></span>
+<span class="odt-code-line">)ENGINE=InnoDB</span>
 <span class="odt-code-line"><span style="color:#000080">AUTO_INCREMENT=56 AVG_ROW_LENGTH=4096 </span><span style="color:#000000">CHARACTER </span><span style="font-weight:bold;color:#000000">SET </span><span style="color:#800000">&#x27;utf8&#x27; </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#800000">&#x27;utf8_general_ci&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#800000">COMMENT=&#x27;&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#000000">;</span></span>
+<span class="odt-code-line">COMMENT=&#x27;&#x27;</span>
+<span class="odt-code-line">;</span>
 <span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line">#</span>
 <span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Structure for </span><span style="color:#000000">the `creneaux` </span><span style="font-weight:bold;color:#000000">table</span><span style="color:#000000">: </span></span>
-<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line">#</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="font-weight:bold;color:#000000">CREATE TABLE </span><span style="color:#000000">`slots` (</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL </span><span style="color:#000000">AUTO_INCREMENT,</span></span>
@@ -861,14 +873,14 @@
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">PRIMARY KEY USING </span><span style="color:#000000">BTREE (`ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
 <span class="odt-code-line"><span style="color:#008080">   </span><span style="font-weight:bold;color:#000000">INDEX </span><span style="color:#000000">`MEDECIN_ID` </span><span style="font-weight:bold;color:#000000">USING </span><span style="color:#000000">BTREE (`MEDECIN_ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">CONSTRAINT </span><span style="color:#000000">`creneaux_ibfk_1` </span><span style="font-weight:bold;color:#000000">FOREIGN KEY </span><span style="color:#000000">(`MEDECIN_ID`) REFERENCES `medecins` (`ID`) </span><span style="font-weight:bold;color:#000000">ON DELETE CASCADE ON UPDATE NO ACTION</span></span>
-<span class="odt-code-line"><span style="color:#000000">)ENGINE=InnoDB</span></span>
+<span class="odt-code-line">)ENGINE=InnoDB</span>
 <span class="odt-code-line"><span style="color:#000080">AUTO_INCREMENT=472 AVG_ROW_LENGTH=455 </span><span style="color:#000000">CHARACTER </span><span style="font-weight:bold;color:#000000">SET </span><span style="color:#800000">&#x27;utf8&#x27; </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#800000">&#x27;utf8_general_ci&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#800000">COMMENT=&#x27;&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#000000">;</span></span>
+<span class="odt-code-line">COMMENT=&#x27;&#x27;</span>
+<span class="odt-code-line">;</span>
 <span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line">#</span>
 <span class="odt-code-line"><span style="color:#000000"># </span><span style="font-weight:bold;color:#000000">Structure for </span><span style="color:#000000">the `rvs` </span><span style="font-weight:bold;color:#000000">table</span><span style="color:#000000">: </span></span>
-<span class="odt-code-line"><span style="color:#000000">#</span></span>
+<span class="odt-code-line">#</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="font-weight:bold;color:#000000">CREATE TABLE </span><span style="color:#000000">`rvs` (</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">`ID` INTEGER(</span><span style="color:#000080">11</span><span style="color:#000000">) </span><span style="font-weight:bold;color:#000000">NOT NULL </span><span style="color:#000000">AUTO_INCREMENT,</span></span>
@@ -882,10 +894,10 @@
 <span class="odt-code-line"><span style="color:#008080">   </span><span style="font-weight:bold;color:#000000">INDEX </span><span style="color:#000000">`CLIENT_ID` </span><span style="font-weight:bold;color:#000000">USING </span><span style="color:#000000">BTREE (`CLIENT_ID`) COMMENT </span><span style="color:#800000">&#x27;&#x27;</span><span style="color:#000000">,</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">CONSTRAINT </span><span style="color:#000000">`rvs_ibfk_2` </span><span style="font-weight:bold;color:#000000">FOREIGN KEY </span><span style="color:#000000">(`CLIENT_ID`) REFERENCES `clients` (`ID`) </span><span style="font-weight:bold;color:#000000">ON DELETE CASCADE ON UPDATE NO ACTION</span><span style="color:#000000">,</span></span>
 <span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold;color:#000000">CONSTRAINT </span><span style="color:#000000">`rvs_ibfk_1` </span><span style="font-weight:bold;color:#000000">FOREIGN KEY </span><span style="color:#000000">(`CRENEAU_ID`) REFERENCES `creneaux` (`ID`) </span><span style="font-weight:bold;color:#000000">ON DELETE CASCADE ON UPDATE NO ACTION</span></span>
-<span class="odt-code-line"><span style="color:#000000">)ENGINE=InnoDB</span></span>
+<span class="odt-code-line">)ENGINE=InnoDB</span>
 <span class="odt-code-line"><span style="color:#000080">AUTO_INCREMENT=28 AVG_ROW_LENGTH=16384 </span><span style="color:#000000">CHARACTER </span><span style="font-weight:bold;color:#000000">SET </span><span style="color:#800000">&#x27;utf8&#x27; </span><span style="font-weight:bold;color:#000000">COLLATE </span><span style="color:#800000">&#x27;utf8_general_ci&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#800000">COMMENT=&#x27;&#x27;</span></span>
-<span class="odt-code-line"><span style="color:#000000">;</span></span>
+<span class="odt-code-line">COMMENT=&#x27;&#x27;</span>
+<span class="odt-code-line">;</span>
 </code></pre></div>
 
 <ul>
@@ -898,21 +910,21 @@
 </ul>
 <p><span style="color: #000000">The script for generating the tables in the MySQL database [rvmedecins-ef] has been placed in the folder [RdvMedecins / databases / mysql]. The reader can load and run it to create the tables.</span></p>
 <p><span style="color: #000000">Once this is done, the various programs in the project can be run. They produce the same results as with SQL Server, except for the [ModifyDetachedEntities] program, which crashes. To understand why, we can look at the output of the [ModifyAttachedEntities] program:</span></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span>
-<span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span>
-<span class="normal"><a href="#__codelineno-0-6">6</a></span>
-<span class="normal"><a href="#__codelineno-0-7">7</a></span>
-<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>client1--before
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>Client [,xx,xx,xx,]
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>client1--after
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>Client [86,xx,xx,xx,]
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a>client2
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a>Client [86,xx,xx,xx,10/11/2012 11:31:12]
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a>customer3
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a>Client [86,xx,xx,yy,10/11/2012 11:31:12]
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>client1--before
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>Client [,xx,xx,xx,]
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>client1--after
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>Client [86,xx,xx,xx,]
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>client2
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>Client [86,xx,xx,xx,10/11/2012 11:31:12]
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>customer3
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>Client [86,xx,xx,yy,10/11/2012 11:31:12]
 </code></pre></div></td></tr></table></div>
 <ul>
 <li><span style="color: #000000">Lines 1-2: a client before the context is saved;</span></li>
@@ -921,55 +933,55 @@
 <p><span style="color: #000000">Now let&#x27;s examine the code for the [ModifyDetachedEntities] program that crashes:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line"><span style="color:#0000ff">using </span>System;</span>
-<span class="odt-code-line"><span style="color:#000000">...</span></span>
+<span class="odt-code-line">...</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="color:#0000ff">namespace </span><span style="color:#000000">RdvMedecins_01</span></span>
-<span class="odt-code-line"><span style="color:#000000">{</span></span>
+<span class="odt-code-line">{</span>
 <span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#0000ff">class </span><span style="color:#2b91af">ModifyDetachedEntities</span></span>
-<span class="odt-code-line"><span style="color:#000000">  {</span></span>
+<span class="odt-code-line">  {</span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">static void </span><span style="color:#000000">Main(</span><span style="color:#0000ff">string</span><span style="color:#000000">[] args)</span></span>
-<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line">    {</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#2b91af">Client </span><span style="color:#000000">client1;</span></span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// clear the current database</span></span>
-<span class="odt-code-line"><span style="color:#000000">      Erase();</span></span>
+<span class="odt-code-line">      Erase();</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// add a client</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// create client</span></span>
 <span class="odt-code-line"><span style="color:#000000">        client1 = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">Client </span><span style="color:#000000">{ Title = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">, LastName = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">, FirstName = </span><span style="color:#a31515">&quot;x&quot; </span><span style="color:#000000">};</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// Add the client to the context</span></span>
-<span class="odt-code-line"><span style="color:#000000">        context.Clients.Add(client1);</span></span>
+<span class="odt-code-line">        context.Clients.Add(client1);</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// Save the context</span></span>
-<span class="odt-code-line"><span style="color:#000000">        context.SaveChanges();</span></span>
-<span class="odt-code-line"><span style="color:#000000">      }</span></span>
+<span class="odt-code-line">        context.SaveChanges();</span>
+<span class="odt-code-line">      }</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// basic display</span></span>
 <span class="odt-code-line"><span style="color:#000000">      Dump(</span><span style="color:#a31515">&quot;1-----------------------------&quot;</span><span style="color:#000000">);</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// client1 is not in the context - modify it</span></span>
 <span class="odt-code-line"><span style="color:#000000">      client1.Name = </span><span style="color:#a31515">&quot;y&quot;</span><span style="color:#000000">;</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">// modifying an entity outside the context</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// here, we have a new empty context</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we put client1 into the context in a modified state</span></span>
 <span class="odt-code-line"><span style="color:#000000">        context.Entry(client1).State = </span><span style="color:#2b91af">EntityState</span><span style="color:#000000">.Modified;</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// we save the context</span></span>
-<span class="odt-code-line"><span style="color:#000000">        context.SaveChanges();</span></span>
-<span class="odt-code-line"><span style="color:#000000">      }</span></span>
-<span class="odt-code-line"><span style="color:#000000">      ...</span></span>
-<span class="odt-code-line"><span style="color:#000000">    }</span></span>
+<span class="odt-code-line">        context.SaveChanges();</span>
+<span class="odt-code-line">      }</span>
+<span class="odt-code-line">      ...</span>
+<span class="odt-code-line">    }</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">static void </span><span style="color:#000000">Erase()</span></span>
-<span class="odt-code-line"><span style="color:#000000">    {</span></span>
+<span class="odt-code-line">    {</span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#008000">...</span></span>
-<span class="odt-code-line"><span style="color:#000000">    }</span></span>
+<span class="odt-code-line">    }</span>
 <span class="odt-code-line"></span>
 <span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#0000ff">static void </span><span style="color:#000000">Dump(</span><span style="color:#0000ff">string </span><span style="color:#000000">str)</span></span>
-<span class="odt-code-line"><span style="color:#000000">    {</span></span>
-<span class="odt-code-line"><span style="color:#000000">      ...</span></span>
-<span class="odt-code-line"><span style="color:#000000">    }</span></span>
-<span class="odt-code-line"><span style="color:#000000">  }</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line">    {</span>
+<span class="odt-code-line">      ...</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line">}</span>
 </code></pre></div>
 
 <ul>
@@ -980,12 +992,12 @@
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line">      <span style="color:#008000">// retrieve client1 to get its version</span></span>
 <span class="odt-code-line"><span style="color:#000000">      </span><span style="color:#0000ff">using </span><span style="color:#000000">(</span><span style="color:#0000ff">var </span><span style="color:#000000">context = </span><span style="color:#0000ff">new </span><span style="color:#2b91af">RdvMedecinsContext</span><span style="color:#000000">())</span></span>
-<span class="odt-code-line"><span style="color:#000000">      {</span></span>
+<span class="odt-code-line">      {</span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// client2 will be in the context</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#2b91af">Client </span><span style="color:#000000">client2 = context.Clients.Find(client1.Id);</span></span>
 <span class="odt-code-line"><span style="color:#000000">        </span><span style="color:#008000">// Set client1&#x27;s version to that of client2</span></span>
-<span class="odt-code-line"><span style="color:#000000">        client1.Versioning = client2.Versioning;</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line">        client1.Versioning = client2.Versioning;</span>
+<span class="odt-code-line">}</span>
 </code></pre></div>
 
 <p><span style="color: #000000">Now, the [</span>client1] <span style="color: #000000">entity has the same version as in the database and can therefore be used to update the row in the database.</span></p>
@@ -1021,7 +1033,7 @@
 <span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
 <span class="odt-code-line"><span style="color:#0000ff">      &lt;</span><span style="color:#a31515">add </span><span style="color:#0000ff">name=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySQL Data Provider</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">invariant=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient</span><span style="color:#000000">&quot; </span><span style="color:#0000ff">description=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">.NET Framework Data Provider for MySQL</span><span style="color:#000000">&quot;</span></span>
 <span class="odt-code-line"><span style="color:#0000ff">          type=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=C5687FC88969C44D</span><span style="color:#000000">&quot;</span></span>
-<span class="odt-code-line"><span style="color:#000000">        /&gt;</span></span>
+<span class="odt-code-line">        /&gt;</span>
 <span class="odt-code-line"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">/DbProviderFactories</span><span style="color:#0000ff">&gt;</span></span>
 <span class="odt-code-line"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">/system.data</span><span style="color:#0000ff">&gt;</span></span>
 </code></pre></div>
@@ -1132,9 +1144,9 @@
           https://tahe.developpez.com
         </a>
         <br>
-        Ce cours-tutoriel écrit par <strong>Serge Tahé</strong> est mis à disposition du public selon les termes de la
-        <em>Licence Creative Commons Attribution – Pas d’Utilisation Commerciale –
-        Partage dans les Mêmes Conditions 3.0 non transposé</em>.
+        This tutorial, written by <strong>Serge Tahé</strong>, is made available to the public under the terms of the
+        <em>Creative Commons Attribution – Non-Commercial –
+        ShareAlike 3.0 Unported Licence</em>.
       </div>
 
     </div>
