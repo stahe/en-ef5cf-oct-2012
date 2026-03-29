@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var COPY_LABEL = "Copy";
   var COPIED_LABEL = "Copied";
   var ONLY_RECOGNIZED = true;
-  var MIN_LINES = 6;
+  var MIN_LINES = 4;
   var PYGMENTS_HEURISTIC = true;
 
   // Languages considered "not recognized" (plain text)
