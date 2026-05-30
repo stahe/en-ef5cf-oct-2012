@@ -55,6 +55,8 @@
     
       <link rel="stylesheet" href="stylesheets/focus.css">
     
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -328,14 +330,14 @@
   
   
     <li class="md-nav__item">
-      <a href="the--a-case-study.html" class="md-nav__link">
+      <a href="the-case-study.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    2. The : A Case Study
+    2. The case study
   
 
     
@@ -389,7 +391,7 @@
   <span class="md-ellipsis">
     
   
-    4. Case Study with MySQL 5.5.28
+    4. Case study with MySQL 5.5.28
   
 
     
@@ -409,14 +411,14 @@
   
   
     <li class="md-nav__item">
-      <a href="case-study-with-oracle-database-express-edition-11g-release-2.html" class="md-nav__link">
+      <a href="case-study-with--oracle-database-express-edition-11g-release-2.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    5. Case Study with Oracle Database Express Edition 11g Release 2
+    5. Case Study with  Oracle Database Express Edition 11g Release 2
   
 
     
@@ -470,7 +472,7 @@
   <span class="md-ellipsis">
     
   
-    7. Case study with Firebird 2.1
+    7. Case Study with Firebird 2.1
   
 
     
@@ -540,20 +542,20 @@
   
 
 
-<p><a id="refheading39831804107930"></a></p>
-<h1 id="8-conclusion">8. <span style="color: #365f91">Conclusion</span></h1>
-<p><span style="color: #000000">In this document, we first explored Entity Framework 5 Code First (EF 5). Then we ported the following application, which used the NHibernate ORM:</span></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005EA00000115D91908D8.png" width="680" height="124" style="display:inline-block; margin:4px;width:17.999cm;height:3.293cm;" class="odt-zoomable" data-zoom-src="images/10000000000005EA00000115D91908D8.png" /></td></tr></table>
+<p><span id="refheading39831804107930" name="refheading39831804107930" class="odt-bookmark-anchor"></span></p>
+<h1 id="8-conclusion">8. <span style="color: #365f91"><strong>Conclusion</strong></span></h1>
+<p><span style="color: #000000">In this document, we first explored Entity Framework 5 Code First (EF 5). Then we ported the following application, which used ORM and NHibernate,</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005EA00000115D91908D8.png" width="680" height="124" style="display:inline-block; margin:4px;width:17.999cm;height:3.293cm;" class="odt-zoomable" data-zoom-src="images/10000000000005EA00000115D91908D8.png" /></td></tr></table>
 
-<p>to the following architecture, which uses the EF 5 ORM:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005E50000011F327B2216.png" width="680" height="129" style="display:inline-block; margin:4px;width:17.999cm;height:3.424cm;" class="odt-zoomable" data-zoom-src="images/10000000000005E50000011F327B2216.png" /></td></tr></table>
+<p>to the following architecture, which uses ORM and EF 5:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005E50000011F327B2216.png" width="680" height="129" style="display:inline-block; margin:4px;width:17.999cm;height:3.424cm;" class="odt-zoomable" data-zoom-src="images/10000000000005E50000011F327B2216.png" /></td></tr></table>
 
-<p>We built this latter architecture using five DBMSs. While portability between DBMSs was not always 100%, it was nonetheless extremely satisfactory. </p>
+<p>We built this latest architecture with five SGBD. While portability between SGBD was not always 100%, it was nonetheless extremely satisfactory. </p>
 <p>We learned a few principles:</p>
 <ul>
-<li>all DBMSs studied have a solution for automatically generating primary key values;</li>
+<li>all SGBD instances studied have a solution for automatically generating primary key values;</li>
 <li>to manage concurrent access to database entities, it appears that an integer column automatically incremented by triggers is a solution accepted by all;</li>
-<li>when in Lazy Loading mode, it is important that entities encapsulate the foreign key values associated with them. This then allows the entity’s dependencies to be retrieved from the database.</li>
+<li>when in Lazy Loading mode, it is important for entities to encapsulate the foreign key values associated with them. This then allows the entity’s dependencies to be retrieved from the database.</li>
 </ul>
 
 
