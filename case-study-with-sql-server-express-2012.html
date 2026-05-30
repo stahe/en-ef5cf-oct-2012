@@ -941,9 +941,9 @@
 
 
 <p><span id="refheading39733804107930" name="refheading39733804107930" class="odt-bookmark-anchor"></span></p>
-<h1 id="3-case-study-with-sql-server-express-2012">3. <span style="color: #365f91"><strong>Case Study with SQL Server Express 2012</strong></span></h1>
+<h1 id="3-case-study-with-sql-server-express-2012">3. <span style="color: #365f91">Case Study with SQL Server Express 2012</span></h1>
 <p><span id="refheading39735804107930" name="refheading39735804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="31-introduction">3.1. <span style="color: #4f81bd"><strong>Introduction</strong></span></h2>
+<h2 id="31-introduction">3.1. <span style="color: #4f81bd">Introduction</span></h2>
 <p>The examples found on net for Entity Framework are mostly examples using SQL Server. This is quite normal. It is likely that SGBD is the most widely used in the corporate .NET world. We will follow this trend. The examples will then be extended to all databases mentioned in section<a href="introduction.html#outils"><u><span style="color: #0563c1"> 1.2</span></u></a>.</p>
 <p><span id="refheading39737804107930" name="refheading39737804107930" class="odt-bookmark-anchor"></span></p>
 <h2 id="32-installing-the-tools">3.2. <span style="color: #4f81bd"><strong>Installing the tools</strong></span></h2>
@@ -1057,9 +1057,9 @@
 <li>In [12], the table [PERSONNES] has been successfully created.</li>
 </ul>
 <p>That is all we need to know for now about using the SQL Server administration tool.</p>
-<p><span id="localdb" name="localdb" class="odt-bookmark-anchor"></span>
-<span id="refheading39739804107930" name="refheading39739804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="33-the-embedded-server-localdbv110">3.3. <span style="color: #4f81bd"><strong>The embedded server (localdb)\v11.0</strong></span></h2>
+<p><span id="refheading39739804107930" name="refheading39739804107930" class="odt-bookmark-anchor"></span>
+<span id="localdb" name="localdb" class="odt-bookmark-anchor"></span></p>
+<h2 id="33-the-embedded-server-localdbv110">3.3. <span style="color: #4f81bd">The embedded server (localdb)\v11.0</span></h2>
 <p>VS Express 2012 comes with an embedded SQL server. Here, we assume that VS Express 2012 has been installed. Launch VS 2012:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000059A000001BCE4849A4C.png" width="680" height="211" style="display:inline-block; margin:4px;width:17.999cm;height:5.572cm;" class="odt-zoomable" data-zoom-src="images/100000000000059A000001BCE4849A4C.png" /></td></tr></table>
 
@@ -1073,7 +1073,7 @@
 </ul>
 <p>We will not use this embedded server in VS 2012.</p>
 <p><span id="refheading39741804107930" name="refheading39741804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="34-creating-the-database-from-entities">3.4. <span style="color: #4f81bd"><strong>Creating the database from entities</strong></span></h2>
+<h2 id="34-creating-the-database-from-entities">3.4. <span style="color: #4f81bd">Creating the database from entities</span></h2>
 <p>Entity Framework 5 Code First allows you to create a database from entities. That is what we will look at now. Using VS Express 2012, we create an initial console project in C#:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000617000002B1E47053BB.png" width="680" height="301" style="display:inline-block; margin:4px;width:17.999cm;height:7.955cm;" class="odt-zoomable" data-zoom-src="images/1000000000000617000002B1E47053BB.png" /></td></tr></table>
 
@@ -1124,7 +1124,7 @@
 
 <p>Entities must reflect the database tables. The data access layer uses these entities instead of working directly with the tables. Let’s start with the [MEDECINS] table:</p>
 <p><span id="refheading39743804107930" name="refheading39743804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="341-the-medecin-entity">3.4.1. <span style="color: #4f81bd"><strong>The [Medecin] entity</strong></span></h3>
+<h3 id="341-the-medecin-entity">3.4.1. <span style="color: #4f81bd">The [Medecin] entity</span></h3>
 <p>It contains information about the doctors managed by the [RdvMedecins] application.</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000013B0000009140E8B0E1.png" width="220" height="101" style="display:inline-block; margin:4px;width:5.83cm;height:2.685cm;" class="odt-zoomable" data-zoom-src="images/100000000000013B0000009140E8B0E1.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001830000006A63E8B6FD.png" width="271" height="74" style="display:inline-block; margin:4px;width:7.17cm;height:1.963cm;" class="odt-zoomable" data-zoom-src="images/10000000000001830000006A63E8B6FD.png" /></td></tr></table>
 
@@ -1362,7 +1362,7 @@
 
 <p>We still need to see how to represent the concept of a foreign key between tables in an entity.</p>
 <p><span id="refheading39745804107930" name="refheading39745804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="342-the-creneau-entity">3.4.2. <span style="color: #4f81bd"><strong>The [Creneau] entity</strong></span></h3>
+<h3 id="342-the-creneau-entity">3.4.2. <span style="color: #4f81bd">The [Creneau] entity</span></h3>
 <p>The table [CRENEAUX] lists the time slots where RV entries are possible: </p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000170000000B33347BA3C.png" width="258" height="125" style="display:inline-block; margin:4px;width:6.819cm;height:3.318cm;" class="odt-zoomable" data-zoom-src="images/1000000000000170000000B33347BA3C.png" /></td></tr></table>
 
@@ -1517,7 +1517,7 @@
 
 <p><span style="color: #000000">We know the basics. We can finish by creating the other two entities.</span></p>
 <p><span id="refheading39747804107930" name="refheading39747804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="343-the-entities-client-and-rv">3.4.3. <span style="color: #4f81bd"><strong>The entities [Client] and [Rv]</strong></span></h3>
+<h3 id="343-the-entities-client-and-rv">3.4.3. <span style="color: #4f81bd">The entities [Client] and [Rv]</span></h3>
 <p><span style="color: #000000">With what we’ve learned, we can write the entities [Client] and [Rv]. The [Client] entity contains information about the clients entities managed by the [RdvMedecins] application.</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000015C0000009211F9EF53.png" width="244" height="102" style="display:inline-block; margin:4px;width:6.451cm;height:2.706cm;" class="odt-zoomable" data-zoom-src="images/100000000000015C0000009211F9EF53.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001720000006D8D331F7F.png" width="259" height="76" style="display:inline-block; margin:4px;width:6.849cm;height:2.018cm;" class="odt-zoomable" data-zoom-src="images/10000000000001720000006D8D331F7F.png" /></td></tr></table>
 
@@ -1627,7 +1627,7 @@
 <li><span style="color: #000000">populate the database with data.</span>
 <span id="refheading39749804107930" name="refheading39749804107930" class="odt-bookmark-anchor"></span></li>
 </ul>
-<h3 id="344-setting-the-database-name">3.4.4. <span style="color: #4f81bd"><strong>Setting the database name</strong></span></h3>
+<h3 id="344-setting-the-database-name">3.4.4. <span style="color: #4f81bd">Setting the database name</span></h3>
 <p><span style="color: #000000">To set the name of the database generated by EF, we will use a connection string defined in [App.config]. This configuration file changes as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;?</span><span style="color:#a31515">xml</span><span style="color:#0000ff"> </span><span style="color:#ff0000">version</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">1.0</span>&quot;<span style="color:#0000ff"> </span><span style="color:#ff0000">encoding</span><span style="color:#0000ff">=</span>&quot;<span style="color:#0000ff">utf-8</span>&quot;<span style="color:#0000ff">?&gt;</span></span></span>
@@ -1879,7 +1879,7 @@
 <p>When the project is run, the same base is obtained. EF 5 has mapped the lowest classes in the inheritance hierarchy, each to a table. In fact, EF 5 has different table generation strategies for representing entity inheritance. We will not cover them here. You can read, for example, &quot;<span id="ctl00articletitle" name="ctl00articletitle" class="odt-bookmark-anchor"></span> Entity Framework Code First Inheritance: Table Per Hierarchy and Table Per Type,&quot; at URL [http://www.codeproject.com/Articles/393228/Entity-Framework-Code-First-Inheritance-Table-Per].</p>
 <p>We will now use this version for the entities.</p>
 <p><span id="refheading39755804107930" name="refheading39755804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="347-add-constraints-to-the-database">3.4.7. <span style="color: #4f81bd"><strong>Add constraints to the database</strong></span></h3>
+<h3 id="347-add-constraints-to-the-database">3.4.7. <span style="color: #4f81bd">Add constraints to the database</span></h3>
 <p><span style="color: #000000">There is one more detail to address. The [RVS] appointment table is as follows:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000011C000000812CB8798B.png" width="199" height="90" style="display:inline-block; margin:4px;width:5.26cm;height:2.388cm;" class="odt-zoomable" data-zoom-src="images/100000000000011C000000812CB8798B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
@@ -1947,7 +1947,7 @@
 <p><span style="color: #000000">Information about the selected table is available in tabs. Above, we see the [Fields] tab for the [CLIENTS] table. The [Data] tab displays the table’s contents:</span></p>
 <p><img src="images/1000000000000235000000C462845E7A.png" width="395" height="137" style="width:10.46cm;height:3.628cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000235000000C462845E7A.png" /></p>
 <p><span id="refheading39757804107930" name="refheading39757804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="348-the-final-database">3.4.8. <span style="color: #4f81bd"><strong>The Final Database</strong></span></h3>
+<h3 id="348-the-final-database">3.4.8. <span style="color: #4f81bd">The Final Database</span></h3>
 <p><span style="color: #000000">We now have our final database. We export its script, SQL, so that we can regenerate it if necessary.</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000056E000001C30E28ACA6.png" width="680" height="221" style="display:inline-block; margin:4px;width:17.999cm;height:5.84cm;" class="odt-zoomable" data-zoom-src="images/100000000000056E000001C30E28ACA6.png" /></td></tr></table>
 
@@ -2013,7 +2013,7 @@
 </ul>
 <p><span style="color: #000000">We will now work with this existing database. If it is destroyed or corrupted, we know how to regenerate it.</span></p>
 <p><span id="refheading39759804107930" name="refheading39759804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="35-working-with-the-database-using-entity-framework">3.5. <span style="color: #4f81bd"><strong>Working with the database using Entity Framework</strong></span></h2>
+<h2 id="35-working-with-the-database-using-entity-framework">3.5. <span style="color: #4f81bd">Working with the database using Entity Framework</span></h2>
 <p><span style="color: #000000">We will:</span></p>
 <ul>
 <li><span style="color: #000000">add, delete, and modify database elements;</span></li>
@@ -2122,7 +2122,7 @@
 <li><span style="color: #000000">Lines 1-6: Deleting a time slot will also delete all appointments associated with it.</span>
 <span id="refheading39763804107930" name="refheading39763804107930" class="odt-bookmark-anchor"></span></li>
 </ul>
-<h3 id="352-adding-items-to-the-persistence-context">3.5.2. <span style="color: #4f81bd"><strong>Adding items to the persistence context</strong></span></h3>
+<h3 id="352-adding-items-to-the-persistence-context">3.5.2. <span style="color: #4f81bd">Adding items to the persistence context</span></h3>
 <p><span style="color: #000000">Now that we have emptied the database, we will fill it again. We are adding the program [Fill.cs] [1] to the project.</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000187000001A6E3176501.png" width="196" height="211" style="display:inline-block; margin:4px;width:5.173cm;height:5.583cm;" class="odt-zoomable" data-zoom-src="images/1000000000000187000001A6E3176501.png" /></td></tr></table>
 
@@ -2235,7 +2235,7 @@
 
 <p><span style="color: #000000">We can see in [2] that the tables have been populated.</span></p>
 <p><span id="refheading39765804107930" name="refheading39765804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="353-displaying-the-database-contents">3.5.3. <span style="color: #4f81bd"><strong>Displaying the database contents</strong></span></h3>
+<h3 id="353-displaying-the-database-contents">3.5.3. <span style="color: #4f81bd">Displaying the database contents</span></h3>
 <p><span style="color: #000000">We will now display the database contents using the </span><strong>LINQ to Entity</strong> <span style="color: #000000">query. LINQ </span>(Language <strong>INtegrated</strong> Query) was introduced with the .NET 3.5 framework in 2007. It serves as an extension of the .NET and c.a.d languages, as it is integrated into the language and its syntax is validated by the compiler. It allows querying various collections using a syntax similar to the SQL (Structured Query Language) database query language. There are different versions of LINQ:</p>
 <ul>
 <li><span style="color: #000000">LINQ to Object, for querying in-memory collections;</span></li>
@@ -2633,7 +2633,7 @@
 <a id="__codelineno-2-51" name="__codelineno-2-51"></a>Appuyez sur une touche pour continuer...
 </code></pre></div></td></tr></table></div>
 <p><span id="refheading39767804107930" name="refheading39767804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="354-learning-linq-with-linqpad">3.5.4. <span style="color: #4f81bd"><strong>Learning LINQ with LINQPad</strong></span></h3>
+<h3 id="354-learning-linq-with-linqpad">3.5.4. <span style="color: #4f81bd">Learning LINQ with LINQPad</span></h3>
 <p><span style="color: #000000">We used the LINQ to Entity queries above to display the contents of the database tables. Joseph Albahari wrote a program to learn the different forms of LINQ. We present it now.</span></p>
 <p>LINQPad is available at the following URL [http://www.linqpad.net/]. Once installed, we launch it [1]:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006470000012ED9EC5A63.png" width="680" height="128" style="display:inline-block; margin:4px;width:17.999cm;height:3.383cm;" class="odt-zoomable" data-zoom-src="images/10000000000006470000012ED9EC5A63.png" /></td></tr></table>
@@ -2805,9 +2805,9 @@
 <span style="color:#000000">.Where (client =&gt; (client.TITRE == &quot;Mr&quot;))</span>
 <span style="color:#000000">.OrderByDescending (client =&gt; client.NOM)</span></span></span>
 </code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SQL</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">-- Region ParametersDECLARE</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">-- Region ParametersDECLARE</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#2b91af">@p0 </span><span style="color:#0000ff">NVarChar</span><span style="color:#000000">(1000) </span><span style="color:#808080">= </span><span style="color:#dc1414">&#x27;Mr&#x27;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">-- EndRegionSELECT</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">-- EndRegionSELECT</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[TITRE]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[NOM]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[PRENOM]</span><span style="color:#000000">,</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[TIMESTAMP]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">FROM </span><span style="color:#a31515">[CLIENTS] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[t0]</span></span></span>
@@ -2823,7 +2823,7 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>LINQfrom</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> slot </span><span style="color:#0000ff">in </span><span style="color:#000000">CRENEAUXes</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">select new </span><span style="color:#000000">{ hd=creneau.HDEBUT, md=creneau.MDEBUT, hf=slot.HFIN,</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> mf=creneau.MFIN, doctor=creneau.MEDECIN}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> mf=creneau.MFIN, doctor=creneau.MEDECIN}</span></span>
 </code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>LambdaSQLSELECT</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000103000000EC9C847D64.png" width="181" height="165" style="display:inline-block; margin:4px;width:4.8cm;height:4.374cm;" class="odt-zoomable" data-zoom-src="images/1000000000000103000000EC9C847D64.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[HDEBUT] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[hd]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[MDEBUT] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[md]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[HFIN] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[hf]</span><span style="color:#000000">,</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[MFIN] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[mf]</span><span style="color:#000000">, </span><span style="color:#a31515">[t1]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID]</span><span style="color:#000000">, </span><span style="color:#a31515">[t1]</span><span style="color:#000000">.</span><span style="color:#a31515">[TITRE]</span><span style="color:#000000">, </span><span style="color:#a31515">[t1]</span><span style="color:#000000">.</span><span style="color:#a31515">[NOM]</span><span style="color:#000000">, </span><span style="color:#a31515">[t1]</span><span style="color:#000000">.</span><span style="color:#a31515">[PRENOM]</span><span style="color:#000000">,</span></span></span>
@@ -2864,7 +2864,7 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#808080">INNER JOIN </span><span style="color:#a31515">[CRENEAUX] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[t2] </span><span style="color:#0000ff">ON </span><span style="color:#a31515">[t2]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID] </span><span style="color:#808080">= </span><span style="color:#a31515">[t1]</span><span style="color:#000000">.</span><span style="color:#a31515">[CRENEAU_ID]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#808080">INNER JOIN </span><span style="color:#a31515">[MEDECINS] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[t3] </span><span style="color:#0000ff">ON </span><span style="color:#a31515">[t3]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID] </span><span style="color:#808080">= </span><span style="color:#a31515">[t2]</span><span style="color:#000000">.</span><span style="color:#a31515">[MEDECIN_ID]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">WHERE </span><span style="color:#a31515">[t3]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID] </span><span style="color:#808080">= </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID]</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    ))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ))</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 </code></pre></div></td></tr></table>
 
@@ -2877,9 +2877,9 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> slot </span><span style="color:#0000ff">in </span><span style="color:#000000">CRENEAUXes </span><span style="color:#0000ff">where </span><span style="color:#000000">creneau.MEDECIN.NOM==</span><span style="color:#dc1414">&quot;Pelissier&quot;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#0000ff">select </span><span style="color:#000000">creneauLambdaSQL</span></span></span>
 </code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001A5000000512A66799E.png" width="295" height="57" style="display:inline-block; margin:4px;width:7.8cm;height:1.501cm;" class="odt-zoomable" data-zoom-src="images/10000000000001A5000000512A66799E.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">-- Region ParametersDECLARE</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">-- Region ParametersDECLARE</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#2b91af">@p0 </span><span style="color:#0000ff">NVarChar</span><span style="color:#000000">(1000) </span><span style="color:#808080">= </span><span style="color:#dc1414">&#x27;Pelissier&#x27;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">-- EndRegionSELECT</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">-- EndRegionSELECT</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[HDEBUT]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[MDEBUT]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[HFIN]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[MFIN]</span><span style="color:#000000">,</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[MEDECIN_ID]</span><span style="color:#000000">, </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[TIMESTAMP]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">FROM </span><span style="color:#a31515">[CRENEAUX] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[t0]</span></span></span>
@@ -2896,10 +2896,10 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">(</span><span style="color:#0000ff">from </span><span style="color:#000000">rv </span><span style="color:#0000ff">in </span><span style="color:#000000">RVS </span><span style="color:#0000ff">where </span><span style="color:#000000">rv.SLOT.DOCTOR.NAME==</span><span style="color:#dc1414">&quot;Pelissier&quot;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> &amp;&amp; rv.</span><span style="color:#0000ff">DATE==new </span><span style="color:#000000">DateTime(</span><span style="color:#c81efa">2012</span><span style="color:#000000">,</span><span style="color:#c81efa">10</span><span style="color:#000000">,</span><span style="color:#c81efa">08</span><span style="color:#000000">) </span><span style="color:#0000ff"> select </span><span style="color:#000000">rv).Count()</span></span></span>
 </code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Lambda</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SQL</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">-- Region Parameters</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">-- Region Parameters</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">DECLARE </span><span style="color:#2b91af">@p0 </span><span style="color:#0000ff">NVarChar</span><span style="color:#000000">(1000) </span><span style="color:#808080">= </span><span style="color:#dc1414">&#x27;Pelissier&#x27;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">DECLARE </span><span style="color:#2b91af">@p1 </span><span style="color:#0000ff">DateTime </span><span style="color:#808080">= </span><span style="color:#dc1414">&#x27;2012-10-08 00:00:00.000&#x27;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">-- EndRegion</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">-- EndRegion</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">SELECT </span><span style="color:#ff00ff">COUNT</span><span style="color:#000000">(</span><span style="color:#808080">*</span><span style="color:#000000">) </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[value]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">FROM </span><span style="color:#a31515">[RVS] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[t0]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#808080">INNER JOIN </span><span style="color:#a31515">[SLOTS] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[t1] </span><span style="color:#0000ff">ON </span><span style="color:#a31515">[t1]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID] </span><span style="color:#808080">= </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[SLOT_ID]</span></span></span>
@@ -2916,10 +2916,10 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> rv </span><span style="color:#0000ff">in </span><span style="color:#000000">RVS </span><span style="color:#0000ff">where </span><span style="color:#000000">(rv.</span><span style="color:#0000ff">DAY==new </span><span style="color:#000000">DateTime(</span><span style="color:#c81efa">2012</span><span style="color:#000000">,</span><span style="color:#c81efa">10</span><span style="color:#000000">,</span><span style="color:#c81efa">08</span><span style="color:#000000">)</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> &amp;&amp; rv.SLOT.DOCTOR.NAME==</span><span style="color:#dc1414">&quot;Pelissier&quot;</span><span style="color:#000000">) </span><span style="color:#0000ff">select </span><span style="color:#000000">rv.CLIENT</span></span></span>
 </code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Lambda</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000002DA0000006078010C52.png" width="511" height="67" style="display:inline-block; margin:4px;width:13.52cm;height:1.778cm;" class="odt-zoomable" data-zoom-src="images/10000000000002DA0000006078010C52.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SQL</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">-- Region ParametersDECLARE</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">-- Region ParametersDECLARE</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#2b91af">@p0 </span><span style="color:#0000ff">DateTime </span><span style="color:#808080">= </span><span style="color:#dc1414">&#x27;2012-10-08 00:00:00.000&#x27;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">DECLARE </span><span style="color:#2b91af">@p1 </span><span style="color:#0000ff">NVarChar</span><span style="color:#000000">(1000) </span><span style="color:#808080">= </span><span style="color:#dc1414">&#x27;Pelissier&#x27;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">-- EndRegionSELECT</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">-- EndRegionSELECT</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#a31515">[t3]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID]</span><span style="color:#000000">, </span><span style="color:#a31515">[t3]</span><span style="color:#000000">.</span><span style="color:#a31515">[TITRE]</span><span style="color:#000000">, </span><span style="color:#a31515">[t3]</span><span style="color:#000000">.</span><span style="color:#a31515">[NOM]</span><span style="color:#000000">, </span><span style="color:#a31515">[t3]</span><span style="color:#000000">.</span><span style="color:#a31515">[PRENOM]</span><span style="color:#000000">, </span><span style="color:#a31515">[t3]</span><span style="color:#000000">.</span><span style="color:#a31515">[TIMESTAMP]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">FROM </span><span style="color:#a31515">[RVS] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[t0]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#808080">INNER JOIN </span><span style="color:#a31515">[CRENEAUX] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[t1] </span><span style="color:#0000ff">ON </span><span style="color:#a31515">[t1]</span><span style="color:#000000">.</span><span style="color:#a31515">[ID] </span><span style="color:#808080">= </span><span style="color:#a31515">[t0]</span><span style="color:#000000">.</span><span style="color:#a31515">[CRENEAU_ID]</span></span></span>
@@ -2937,8 +2937,8 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> slot </span><span style="color:#0000ff">in </span><span style="color:#000000">CRENEAUXes</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">group </span><span style="color:#000000">slot </span><span style="color:#0000ff">by </span><span style="color:#000000">creneau.MEDECIN </span><span style="color:#0000ff">into </span><span style="color:#000000">creneauxMedecin</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">select new </span><span style="color:#000000">{ name=creneauxMedecin.Key.NOM,</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> first_name=creneauxMedecin.Key.PRENOM,</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> nbRv=creneauxMedecin.Count()}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> first_name=creneauxMedecin.Key.PRENOM,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> nbRv=creneauxMedecin.Count()}</span></span>
 </code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>LambdaSQLSELECT</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000151000000E1EDC0C3ED.png" width="236" height="157" style="display:inline-block; margin:4px;width:6.241cm;height:4.166cm;" class="odt-zoomable" data-zoom-src="images/1000000000000151000000E1EDC0C3ED.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#a31515">[t2]</span><span style="color:#000000">.</span><span style="color:#a31515">[NOM] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[nom]</span><span style="color:#000000">, </span><span style="color:#a31515">[t2]</span><span style="color:#000000">.</span><span style="color:#a31515">[PRENOM] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[prenom]</span><span style="color:#000000">, </span><span style="color:#a31515">[t1]</span><span style="color:#000000">.</span><span style="color:#a31515">[value] </span><span style="color:#0000ff">AS </span><span style="color:#a31515">[nbRv]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">FROM </span><span style="color:#000000">(</span></span></span>
@@ -2951,7 +2951,7 @@
 </code></pre></div></td></tr></table>
 
 <p><span id="refheading39769804107930" name="refheading39769804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="355-modifying-an-entity-attached-to-the-persistence-context">3.5.5. <span style="color: #4f81bd"><strong>Modifying an entity attached to the persistence context</strong></span></h3>
+<h3 id="355-modifying-an-entity-attached-to-the-persistence-context">3.5.5. <span style="color: #4f81bd">Modifying an entity attached to the persistence context</span></h3>
 <p><span style="color: #000000">We have seen the following operations on the persistence context:</span></p>
 <ul>
 <li><span style="color: #000000">adding an element to the context (</span><strong>[dbContext].[DbSet].Add</strong><span style="color: #000000">);</span></li>
@@ -3075,7 +3075,7 @@
 <li><span style="color: #000000">line 59: we close the context. Incidentally, note that unlike the previous two instances, we did not need to synchronize the context with the database (SaveChanges) beforehand because the context had not been modified.</span></li>
 </ul>
 <p><span id="refheading39771804107930" name="refheading39771804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="356-management-of-detached-entities">3.5.6. <span style="color: #4f81bd"><strong>Management of detached entities</strong></span></h3>
+<h3 id="356-management-of-detached-entities">3.5.6. <span style="color: #4f81bd">Management of detached entities</span></h3>
 <p><span style="color: #000000">Let’s return to the layered architecture of an application such as the one in the case study:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005E80000012394CCF3E6.png" width="680" height="131" style="display:inline-block; margin:4px;width:17.999cm;height:3.464cm;" class="odt-zoomable" data-zoom-src="images/10000000000005E80000012394CCF3E6.png" /></td></tr></table>
 
@@ -3241,7 +3241,7 @@
 <p><span style="color: #000000">The entity has indeed been deleted from the database.</span></p>
 <p><span style="color: #000000">Now, we will look at the two modes for loading an entity’s dependencies: </span><strong>Lazy and Eager Loading</strong><span style="color: #000000">.</span></p>
 <p><span id="refheading39773804107930" name="refheading39773804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="357-lazy-and-eager-loading">3.5.7. <span style="color: #4f81bd"><strong>Lazy and Eager Loading</strong></span></h3>
+<h3 id="357-lazy-and-eager-loading">3.5.7. <span style="color: #4f81bd">Lazy and Eager Loading</span></h3>
 <p><span style="color: #000000">Let’s revisit the many-to-one dependency schema of one of our four entities:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000037F0000014C1EAFB962.png" width="448" height="166" style="display:inline-block; margin:4px;width:11.841cm;height:4.392cm;" class="odt-zoomable" data-zoom-src="images/100000000000037F0000014C1EAFB962.png" /></td></tr></table>
 
@@ -3410,7 +3410,7 @@
 <p><span style="color: #000000">EF found that the dependency [Medecin] was missing. It attempted to load it, but since the context was closed, this operation was no longer possible. We will note this [System.ObjectDisposedException] exception, as it is characteristic of loading a dependency outside an open context.</span></p>
 <p><span style="color: #000000">Now let’s examine concurrency in accessing entities.</span></p>
 <p><span id="refheading39775804107930" name="refheading39775804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="358-concurrency-in-access-to-entities">3.5.8. <span style="color: #4f81bd"><strong>Concurrency in Access to Entities</strong></span></h3>
+<h3 id="358-concurrency-in-access-to-entities">3.5.8. <span style="color: #4f81bd">Concurrency in Access to Entities</span></h3>
 <p><span style="color: #000000">Let’s revisit the definition of the [Client] entity:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">Client</span></span></span>
@@ -3674,7 +3674,7 @@
 </ul>
 <p><span style="color: #000000">Now, let’s examine another aspect: the transaction that governs the synchronization of the persistence context with the database.</span></p>
 <p><span id="refheading39777804107930" name="refheading39777804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="359-synchronization-within-a-transaction">3.5.9. <span style="color: #4f81bd"><strong>Synchronization within a transaction</strong></span></h3>
+<h3 id="359-synchronization-within-a-transaction">3.5.9. <span style="color: #4f81bd">Synchronization within a transaction</span></h3>
 <p><span style="color: #000000">The table [CRENEAUX] has a unique constraint that we added manually (see section</span><a href="the-case-study.html#unicitejourcreneau"><u><span style="color: #0563c1"> 2.2.4</span></u></a><span style="color: #000000">, page</span><a href="the-case-study.html#unicitejourcreneau"><u><span style="color: #0563c1"> 12</span></u></a><span style="color: #000000">):</span></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">UNQ1_RV</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">JOUR</span><span class="p">,</span><span class="w"> </span><span class="n">ID_CRENEAU</span><span class="p">);</span>
 </code></pre></div>
@@ -3809,7 +3809,7 @@
 <a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="n">L</span><span class="err">&#39;</span><span class="n">instruction</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="err">é</span><span class="n">té</span><span class="w"> </span><span class="n">arrêtée</span><span class="p">.</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="w">   </span><span class="err">à</span><span class="w"> </span><span class="k">System</span><span class="p">.</span><span class="k">Data</span><span class="p">.</span><span class="n">SqlClient</span><span class="p">.</span><span class="n">SqlConnection</span><span class="p">.</span><span class="n">OnError</span><span class="p">(</span><span class="k">SqlException</span><span class="w"> </span><span class="k">exception</span><span class="p">,</span><span class="w"> </span><span class="nb">Boolean</span><span class="w"> </span><span class="n">breakConnection</span><span class="p">,</span><span class="w"> </span><span class="n">Action</span><span class="o">`</span><span class="mi">1</span><span class="w"> </span><span class="n">wrapCloseInAction</span><span class="p">)</span>
 <a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="w">   </span><span class="err">à</span><span class="w"> </span><span class="k">System</span><span class="p">.</span><span class="k">Data</span><span class="p">.</span><span class="n">SqlClient</span><span class="p">.</span><span class="n">SqlInternalConnection</span><span class="p">.</span><span class="n">OnError</span><span class="p">(</span><span class="k">SqlException</span><span class="w"> </span><span class="k">exception</span><span class="p">,</span><span class="w"> </span><span class="nb">Boolean</span><span class="w"> </span><span class="n">breakConnection</span><span class="p">,</span><span class="w"> </span><span class="n">Action</span><span class="o">`</span><span class="mi">1</span><span class="w"> </span><span class="n">wrapCloseInAction</span><span class="p">)...</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="w">      </span><span class="c1">--- End of internal exception stack trace ---</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="w">    </span><span class="c1">--- End of internal exception stack trace ---</span>
 <a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="w">   </span><span class="p">...</span>
 <a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="w">   </span><span class="err">à</span><span class="w"> </span><span class="k">System</span><span class="p">.</span><span class="k">Data</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">DbContext</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">()</span>
 <a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="w">   </span><span class="err">à</span><span class="w"> </span><span class="n">RdvMedecins_01</span><span class="p">.</span><span class="n">SynchronisationTransaction</span><span class="p">.</span><span class="n">Main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="n">dans</span><span class="w"> </span><span class="n">d</span><span class="p">:</span><span class="err">\</span><span class="k">data</span><span class="err">\</span><span class="n">istia</span><span class="o">-</span><span class="mi">1213</span><span class="err">\</span><span class="k">c</span><span class="o">#</span><span class="err">\</span><span class="n">dvp</span><span class="err">\</span><span class="n">Entity</span><span class="w"> </span><span class="n">Framework</span><span class="err">\</span><span class="n">RdvMedecins</span><span class="err">\</span><span class="n">RdvMedecins</span><span class="o">-</span><span class="n">SqlServer</span><span class="o">-</span><span class="mi">01</span><span class="err">\</span><span class="n">SynchronisationTransaction</span><span class="p">.</span><span class="n">cs</span><span class="p">:</span><span class="n">ligne</span><span class="w"> </span><span class="mi">59</span>
@@ -3824,13 +3824,13 @@
 </ul>
 <p><span style="color: #000000">There are undoubtedly other aspects to explore in EF 5. However, we now know enough to return to our study of a multi-layer architecture. At the beginning of this document, the reader will find references to articles and books that will allow them to deepen their understanding of EF 5.</span></p>
 <p><span id="refheading39779804107930" name="refheading39779804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="36-study-of-a-multi-layer-architecture-based-on-ef-5">3.6. <span style="color: #4f81bd"><strong>Study of a Multi-Layer Architecture Based on EF 5</strong></span></h2>
+<h2 id="36-study-of-a-multi-layer-architecture-based-on-ef-5">3.6. <span style="color: #4f81bd">Study of a Multi-Layer Architecture Based on EF 5</span></h2>
 <p><span style="color: #000000">We return to our case study described in paragraph</span><a href="the-case-study.html#etude-de-cas"><u><span style="color: #0563c1"> 2</span></u></a><span style="color: #000000">. This is a ASP.NET web application structured as follows:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005EE0000011D31285E16.png" width="680" height="128" style="display:inline-block; margin:4px;width:17.999cm;height:3.38cm;" class="odt-zoomable" data-zoom-src="images/10000000000005EE0000011D31285E16.png" /></td></tr></table>
 
 <p><span style="color: #000000">We will begin by building the [DAO] data access layer. This layer will be based on EF5.</span></p>
 <p><span id="refheading39781804107930" name="refheading39781804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="361-the-new-project">3.6.1. <span style="color: #4f81bd"><strong>The new project</strong></span></h3>
+<h3 id="361-the-new-project">3.6.1. <span style="color: #4f81bd">The new project</span></h3>
 <p><span style="color: #000000">We create a new VS 2012 console project in the current [1] solution:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005320000015E4686C70B.png" width="665" height="175" style="display:inline-block; margin:4px;width:17.595cm;height:4.63cm;" class="odt-zoomable" data-zoom-src="images/10000000000005320000015E4686C70B.png" /></td></tr></table>
 
@@ -3874,7 +3874,7 @@
 </code></pre></div>
 
 <p><span id="refheading39783804107930" name="refheading39783804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="362-the-exception-class">3.6.2. <span style="color: #4f81bd"><strong>The Exception Class</strong></span></h3>
+<h3 id="362-the-exception-class">3.6.2. <span style="color: #4f81bd">The Exception Class</span></h3>
 <p><span style="color: #000000">We will use a project-specific exception class. This is the one that will be returned by the [DAO] layer:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005EC000001AE4346C234.png" width="680" height="193" style="display:inline-block; margin:4px;width:17.999cm;height:5.105cm;" class="odt-zoomable" data-zoom-src="images/10000000000005EC000001AE4346C234.png" /></td></tr></table>
 
@@ -3938,7 +3938,7 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001BE00000155E26225E6.png" width="223" height="170" style="display:inline-block; margin:4px;width:5.9cm;height:4.51cm;" class="odt-zoomable" data-zoom-src="images/10000000000001BE00000155E26225E6.png" /></td></tr></table>
 
 <p><span id="refheading39785804107930" name="refheading39785804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="363-the-dao-layer">3.6.3. <span style="color: #4f81bd"><strong>The [DAO] layer</strong></span></h3>
+<h3 id="363-the-dao-layer">3.6.3. <span style="color: #4f81bd">The [DAO] layer</span></h3>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005F00000011DB5528856.png" width="680" height="128" style="display:inline-block; margin:4px;width:17.999cm;height:3.374cm;" class="odt-zoomable" data-zoom-src="images/10000000000005F00000011DB5528856.png" /></td></tr></table>
 
 <p><span style="color: #000000">The [DAO] layer provides an interface to the [ASP.NET] layer. To identify the latter, look at the application’s web pages:</span></p>
@@ -4296,7 +4296,7 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001A00000018AF231FF65.png" width="208" height="197" style="display:inline-block; margin:4px;width:5.503cm;height:5.212cm;" class="odt-zoomable" data-zoom-src="images/10000000000001A00000018AF231FF65.png" /></td></tr></table>
 
 <p><span id="refheading39787804107930" name="refheading39787804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="364-testing-the-dao-layer">3.6.4. <span style="color: #4f81bd"><strong>Testing the [DAO] layer</strong></span></h3>
+<h3 id="364-testing-the-dao-layer">3.6.4. <span style="color: #4f81bd">Testing the [DAO] layer</span></h3>
 <p>We will create a test program for the [DAO] layer. The test architecture will be as follows:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005E40000011BF7266974.png" width="680" height="128" style="display:inline-block; margin:4px;width:17.999cm;height:3.378cm;" class="odt-zoomable" data-zoom-src="images/10000000000005E40000011BF7266974.png" /></td></tr></table>
 
@@ -4698,7 +4698,7 @@
 <p>This method was added because ORM EF 5 operates in <strong>Lazy Loading</strong> mode by default. Entities arrive in the [ASP.NET] layer without their dependencies. The method above allows us to retrieve them if needed, and in some cases, we do need them. NHibernate also operates in <strong>Lazy Loading</strong> mode by default, but I had used it in <strong>Eager Loading</strong> mode. The entities arrived in the [ASP.NET] layer with their dependencies.</p>
 <p>We are going to complete the migration of the ASP.NET / NHibernate application to the ASP.NET / EF 5 application. However, since this no longer concerns EF5, we will not comment on the web code. We will simply explain how to set up the web application and test it. It is available on this tutorial’s website.</p>
 <p><span id="refheading39791804107930" name="refheading39791804107930" class="odt-bookmark-anchor"></span></p>
-<h3 id="366-generation-of-dll-from-the-dao-layer">3.6.6. <span style="color: #4f81bd"><strong>Generation of DLL from the [DAO] layer</strong></span></h3>
+<h3 id="366-generation-of-dll-from-the-dao-layer">3.6.6. <span style="color: #4f81bd">Generation of DLL from the [DAO] layer</span></h3>
 <p>In the following architecture:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005EC00000127EBBF3A8C.png" width="680" height="132" style="display:inline-block; margin:4px;width:17.999cm;height:3.501cm;" class="odt-zoomable" data-zoom-src="images/10000000000005EC00000127EBBF3A8C.png" /></td></tr></table>
 
@@ -4829,7 +4829,7 @@
 
 <p><span style="color: #000000">Once again, we note the benefit of entities embedding their foreign keys. Here, the [Rv] entity gives us access to the foreign key of the associated [Creneau] dependency. With these two corrections made, the application works. Readers are invited to test the [RdvMedecins-SqlServer-03] application available in the example downloads on this article’s website.</span></p>
 <p><span id="refheading39795804107930" name="refheading39795804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="37-conclusion">3.7. <span style="color: #4f81bd"><strong><span style="color: #000000">Conclusion</span></strong></span></h2>
+<h2 id="37-conclusion">3.7. <span style="color: #000000">Conclusion</span></h2>
 <p><span style="color: #000000">We have successfully ported the ASP.NET / NHibernate application:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005EA0000011D6F289F86.png" width="680" height="128" style="display:inline-block; margin:4px;width:17.999cm;height:3.388cm;" class="odt-zoomable" data-zoom-src="images/10000000000005EA0000011D6F289F86.png" /></td></tr></table>
 

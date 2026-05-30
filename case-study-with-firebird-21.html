@@ -615,9 +615,9 @@
 
 
 <p><span id="refheading39823804107930" name="refheading39823804107930" class="odt-bookmark-anchor"></span></p>
-<h1 id="7-case-study-with-firebird-21">7. <span style="color: #365f91"><strong>Case Study with Firebird 2.1</strong></span></h1>
+<h1 id="7-case-study-with-firebird-21">7. <span style="color: #365f91">Case Study with Firebird 2.1</span></h1>
 <p><span id="refheading39825804107930" name="refheading39825804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="71-installing-the-tools">7.1. <span style="color: #4f81bd"><strong>Installing the Tools</strong></span></h2>
+<h2 id="71-installing-the-tools">7.1. <span style="color: #4f81bd">Installing the Tools</span></h2>
 <p><span style="color: #000000">The tools to be installed are as follows:</span></p>
 <ul>
 <li>SGBD: [http://www.firebirdsql.org/en/firebird-2-1-5/];</li>
@@ -654,7 +654,7 @@
 </ul>
 <p><span style="color: #000000">We will now connect a 2012 VS project to this database.</span></p>
 <p><span id="refheading39827804107930" name="refheading39827804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="72-creating-the-database-from-the-entities">7.2. <span style="color: #4f81bd"><strong>Creating the database from the entities</strong></span></h2>
+<h2 id="72-creating-the-database-from-the-entities">7.2. <span style="color: #4f81bd">Creating the database from the entities</span></h2>
 <p><span style="color: #000000">We start by duplicating the [RdvMedecins-SqlServer-01] project folder into [RdvMedecins-Firebird-01] and [1]:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000059E00000313F7EE85CB.png" width="680" height="372" style="display:inline-block; margin:4px;width:17.999cm;height:9.851cm;" class="odt-zoomable" data-zoom-src="images/100000000000059E00000313F7EE85CB.png" /></td></tr></table>
 
@@ -681,7 +681,7 @@
 </ul>
 <p><span style="color: #000000">The [RdvMedecins-Firebird-01] project is identical to the [RdvMedecins-SqlServer-01] project. We need to make a few changes. In [App.config], we will modify the connection string and the [DbProviderFactory], which must be adapted for each SGBD.</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;!-- connection chain on base --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- connection chain on base --&gt;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">monContexte</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> </span><span style="color:#ff0000">connectionString</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">User=SYSDBA;Password=masterkey;Database=D:\data\istia-1213\c#\dvp\Entity Framework\databases\firebird\RDVMEDECINS-EF.GDB;DataSource=localhost;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">Port=3050;Dialect=3;Charset=NONE;Role=;Connection lifetime=15;Pooling=true;MinPoolSize=0;MaxPoolSize=50;Packet Size=8192;ServerType=0;</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> </span><span style="color:#ff0000">providerName</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">FirebirdSql.Data.FirebirdClient</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> /&gt;</span></span></span>
@@ -837,7 +837,7 @@
 <li><span style="color: #000000">Line 2: Before each insertion into table [CLIENTS];</span></li>
 <li><span style="color: #000000">lines 6-7: if the column ID is NULL, then it is assigned the next value from the number generator [CLIENTS_ID_GEN].</span></li>
 </ul>
-<p><span style="color: #000000">The [ BI_CLIENTS_ID,  BI_MEDECINS_ID,  BI_CRENEAUX_ID,  BI_RVS_ID] triggers are all constructed in the same way.</span></p>
+<p><span style="color: #000000">The [ BI_CLIENTS_ID, BI_MEDECINS_ID, BI_CRENEAUX_ID, BI_RVS_ID] triggers are all constructed in the same way.</span></p>
 <p><span style="color: #000000">Let&#x27;s now look at the code DDL for the trigger [CLIENTS_VERSION_TRIGGER], which populates the column [VERSIONING] in the table [CLIENTS]:</span></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">2</a></span>
@@ -861,7 +861,7 @@
 <p><span style="color: #000000">The script for generating the tables in the Firebird database, [RDVMEDECINS-EF], has been placed in the [RdvMedecins / databases / Firebird] folder. The reader can load and run it to create the tables.</span></p>
 <p><span style="color: #000000">Once this is done, the various programs in the project can be run. They produce the same results as with SQL Server, except for the program [ModifyDetachedEntities], which crashes for the same reason it crashed with Oracle and MySQL. The problem is resolved in the same way. Simply copy the [ModifyDetachedEntities] program from the [RdvMedecins-Oracle-01] project into the [RdvMedecins-Firebird-01] project.</span></p>
 <p><span id="refheading39829804107930" name="refheading39829804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="73-multi-layer-architecture-based-on-ef-5">7.3. <span style="color: #4f81bd"><strong>Multi-layer architecture based on EF 5</strong></span></h2>
+<h2 id="73-multi-layer-architecture-based-on-ef-5">7.3. <span style="color: #4f81bd">Multi-layer architecture based on EF 5</span></h2>
 <p><span style="color: #000000">Let’s return to the case study described in Section</span><a href="the-case-study.html#etude-de-cas"><u><span style="color: #0563c1"> 2</span></u></a><span style="color: #000000">.</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005E80000012562EE9C27.png" width="680" height="132" style="display:inline-block; margin:4px;width:17.999cm;height:3.487cm;" class="odt-zoomable" data-zoom-src="images/10000000000005E80000012562EE9C27.png" /></td></tr></table>
 
@@ -892,7 +892,7 @@
 </ul>
 <p><span style="color: #000000">In the file [App.config], the information for the SQL Server database is replaced with that of the Firebird database. This information can be found in the file [App.config] of the [RdvMedecins-Firebird-01] project:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;!-- connection chain on base --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- connection chain on base --&gt;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">monContexte</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> </span><span style="color:#ff0000">connectionString</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">User=SYSDBA;Password=masterkey;Database=D:\data\istia-1213\c#\dvp\Entity Framework\databases\firebird\RDVMEDECINS-EF.GDB;DataSource=localhost;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">Port=3050;Dialect=3;Charset=NONE;Role=;Connection lifetime=15;Pooling=true;MinPoolSize=0;MaxPoolSize=50;Packet Size=8192;ServerType=0;</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> </span><span style="color:#ff0000">providerName</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">FirebirdSql.Data.FirebirdClient</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> /&gt;</span></span></span>

@@ -626,9 +626,9 @@
 
 
 <p><span id="refheading39797804107930" name="refheading39797804107930" class="odt-bookmark-anchor"></span></p>
-<h1 id="4-case-study-with-mysql-5528">4. <span style="color: #365f91"><strong>Case study with MySQL 5.5.28</strong></span></h1>
+<h1 id="4-case-study-with-mysql-5528">4. <span style="color: #365f91">Case study with MySQL 5.5.28</span></h1>
 <p><span id="refheading39799804107930" name="refheading39799804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="41-installing-the-tools">4.1. <span style="color: #4f81bd"><strong>Installing the tools</strong></span></h2>
+<h2 id="41-installing-the-tools">4.1. <span style="color: #4f81bd">Installing the tools</span></h2>
 <p><span style="color: #000000">The tools to be installed are as follows:</span></p>
 <ul>
 <li>SGBD: [http://dev.mysql.com/downloads/];</li>
@@ -660,7 +660,7 @@
 </ul>
 <p><span style="color: #000000">We will now connect a 2012 VS project to this database.</span></p>
 <p><span id="refheading39801804107930" name="refheading39801804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="42-creating-the-database-from-entities">4.2. <span style="color: #4f81bd"><strong>Creating the database from entities</strong></span></h2>
+<h2 id="42-creating-the-database-from-entities">4.2. <span style="color: #4f81bd">Creating the database from entities</span></h2>
 <p><span style="color: #000000">We create the console project VS 2012 [RdvMedecins-MySQL-01] [1] below:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000058500000159A144D204.png" width="680" height="166" style="display:inline-block; margin:4px;width:17.999cm;height:4.396cm;" class="odt-zoomable" data-zoom-src="images/100000000000058500000159A144D204.png" /></td></tr></table>
 
@@ -1004,7 +1004,7 @@
 
 <p><span style="color: #000000">Now, the [client1] entity has the same version as in the database and can therefore be used to update the row in the database.</span></p>
 <p><span id="refheading39803804107930" name="refheading39803804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="43-multi-layer-architecture-based-on-ef-5">4.3. <span style="color: #4f81bd"><strong>Multi-layer architecture based on EF 5</strong></span></h2>
+<h2 id="43-multi-layer-architecture-based-on-ef-5">4.3. <span style="color: #4f81bd">Multi-layer architecture based on EF 5</span></h2>
 <p><span style="color: #000000">Let’s return to the case study described in section</span><a href="the-case-study.html#etude-de-cas"><u><span style="color: #0563c1"> 2</span></u></a><span style="color: #000000">.</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005F50000012077918B5B.png" width="680" height="128" style="display:inline-block; margin:4px;width:17.999cm;height:3.399cm;" class="odt-zoomable" data-zoom-src="images/10000000000005F50000012077918B5B.png" /></td></tr></table>
 
@@ -1024,7 +1024,7 @@
 </ul>
 <p><span style="color: #000000">In the file [App.config], the information from the SQL Server database is replaced with that from the MySQL database. This information can be found in the [App.config] file of the [RdvMedecins-MySQL-01] project:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;!-- connecting chain--&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- connecting chain--&gt;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">monContexte</span><span style="color:#000000">&quot;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">         </span><span style="color:#ff0000">connectionString</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Server=localhost;Database=rdvmedecins-ef;Uid=root;Pwd=root;</span><span style="color:#000000">&quot;</span></span></span>
@@ -1055,7 +1055,7 @@
 
 <p><span style="color: #000000">Line 7 references the assembly for the [RdvMedecins-SqlServer-02] project. The assembly is now [RdvMedecins-MySQL-02].</span></p>
 <p><span style="color: #000000">With that done, we are ready to run the test for the [DAO] layer. First, we must ensure the database is populated (program [Fill] from the [RdvMedecins-MySQL-01] project). The test program succeeds.</span></p>
-<p><span style="color: #000000">We create the DLL for the project as was done for the [RdvMedecins-SqlServer-02] project, and we gatherall DLL files from the project into a </span><span style="color: #000000">[lib] folder created within [RdvMedecins-MySQL-02]. These will serve as the references for the upcoming [RdvMedecins-MySQL-03] web project.</span></p>
+<p><span style="color: #000000">We create the DLL for the project as was done for the [RdvMedecins-SqlServer-02] project, and we gatherall DLL files from the project into a [lib] folder created within [RdvMedecins-MySQL-02]. These will serve as the references for the upcoming [RdvMedecins-MySQL-03] web project.</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000102000000E037C4810C.png" width="181" height="157" style="display:inline-block; margin:4px;width:4.78cm;height:4.15cm;" class="odt-zoomable" data-zoom-src="images/1000000000000102000000E037C4810C.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
 <p><span style="color: #000000">We are now ready to build the [ASP.NET] layer of our application:</span></p>
@@ -1077,7 +1077,7 @@
 </ul>
 <p><span style="color: #000000">All that remains is to modify the [Web.config] file. We replace its current content with the content of the [App.config] file from the [RdvMedecins-MySQL-02] project. Once this is done, we run the web project. It works.</span></p>
 <p><span id="refheading39805804107930" name="refheading39805804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="44-conclusion">4.4. <span style="color: #4f81bd"><strong>Conclusion</strong></span></h2>
+<h2 id="44-conclusion">4.4. <span style="color: #4f81bd">Conclusion</span></h2>
 <p><span style="color: #000000">Let’s recap what was done to switch from the SGBD SQL server to the SGBD MySQL:</span></p>
 <ul>
 <li><span style="color: #000000">the field used to manage concurrent access to entities was changed. Its version SQL Server was:</span></li>

@@ -615,9 +615,9 @@
 
 
 <p><span id="refheading39807804107930" name="refheading39807804107930" class="odt-bookmark-anchor"></span></p>
-<h1 id="5-case-study-with-oracle-database-express-edition-11g-release-2">5. <span style="color: #365f91"><strong>Case Study with  Oracle Database Express Edition 11g Release 2</strong></span></h1>
+<h1 id="5-case-study-with-oracle-database-express-edition-11g-release-2">5. <span style="color: #365f91">Case Study with  Oracle Database Express Edition 11g Release 2</span></h1>
 <p><span id="refheading39809804107930" name="refheading39809804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="51-installing-the-tools">5.1. <span style="color: #4f81bd"><strong>Installing the tools</strong></span></h2>
+<h2 id="51-installing-the-tools">5.1. <span style="color: #4f81bd">Installing the tools</span></h2>
 <p><span style="color: #000000">The tools to be installed are as follows:</span></p>
 <ul>
 <li>SGBD: [http://www.oracle.com/technetwork/products/express-edition/downloads/index.html];</li>
@@ -693,7 +693,7 @@
 </ul>
 <p><span style="color: #000000">Now that we have a user with sufficient permissions, we will create the project VS 2012, which will create the tables  of the schema [RDVMEDECINS-EF] based on the entity definitions.</span></p>
 <p><span id="refheading39811804107930" name="refheading39811804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="52-creating-the-database-from-the-entities">5.2. <span style="color: #4f81bd"><strong>Creating the database from the entities</strong></span></h2>
+<h2 id="52-creating-the-database-from-the-entities">5.2. <span style="color: #4f81bd">Creating the database from the entities</span></h2>
 <p><span style="color: #000000">We start by duplicating the [RdvMedecins-SqlServer-01] project folder into [RdvMedecins-Oracle-01] and [1]:</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005A80000030DD6C4353D.png" width="680" height="367" style="display:inline-block; margin:4px;width:17.999cm;height:9.708cm;" class="odt-zoomable" data-zoom-src="images/10000000000005A80000030DD6C4353D.png" /></td></tr></table>
 
@@ -720,7 +720,7 @@
 </ul>
 <p><span style="color: #000000">The [RdvMedecins-Oracle-01] project is identical to the [RdvMedecins-SqlServer-01] project. We need to make a few changes. In [App.config], we will modify the connection string and the [DbProviderFactory], which must be adapted for each SGBD.</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;!-- connection chain on base --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- connection chain on base --&gt;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">monContexte</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> </span><span style="color:#ff0000">connectionString</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)));User Id=RDVMEDECINS-EF;Password=rdvmedecins;</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> </span><span style="color:#ff0000">providerName</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Oracle.DataAccess.Client</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> /&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;/</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
@@ -989,7 +989,7 @@
 
 <p><span style="color: #000000">and it works. </span></p>
 <p><span id="refheading39813804107930" name="refheading39813804107930" class="odt-bookmark-anchor"></span></p>
-<h2 id="53-multi-layer-architecture-based-on-ef-5">5.3. <span style="color: #4f81bd"><strong>Multi-layer architecture based on EF 5</strong></span></h2>
+<h2 id="53-multi-layer-architecture-based-on-ef-5">5.3. <span style="color: #4f81bd">Multi-layer architecture based on EF 5</span></h2>
 <p><span style="color: #000000">Let’s return to our case study described in paragraph</span><a href="the-case-study.html#etude-de-cas"><u><span style="color: #0563c1"> 2</span></u></a><span style="color: #000000">, page</span><a href="the-case-study.html#etude-de-cas"><u><span style="color: #0563c1"> 7</span></u></a><span style="color: #000000">.</span></p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005E20000012737D4B496.png" width="680" height="133" style="display:inline-block; margin:4px;width:17.999cm;height:3.526cm;" class="odt-zoomable" data-zoom-src="images/10000000000005E20000012737D4B496.png" /></td></tr></table>
 
@@ -1020,7 +1020,7 @@
 </ul>
 <p><span style="color: #000000">In the [App.config] file, replace the SQL Server database information with that of the Oracle database. This information can be found in the [App.config] file of the [RdvMedecins-Oracle-01] project:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">&lt;!-- connection chain on base --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- connection chain on base --&gt;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">    &lt;</span><span style="color:#a31515">add</span><span style="color:#0000ff"> </span><span style="color:#ff0000">name</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">monContexte</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> </span><span style="color:#ff0000">connectionString</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)));User Id=RDVMEDECINS-EF;Password=rdvmedecins;</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> </span><span style="color:#ff0000">providerName</span><span style="color:#0000ff">=</span><span style="color:#000000">&quot;</span><span style="color:#0000ff">Oracle.DataAccess.Client</span><span style="color:#000000">&quot;</span><span style="color:#0000ff"> /&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">  &lt;/</span><span style="color:#a31515">connectionStrings</span><span style="color:#0000ff">&gt;</span></span></span>
